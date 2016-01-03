@@ -15,7 +15,7 @@ https://www.sourcetreeapp.com/
 
 
 Mongo Database Install
-τρεξεται το αρχειο .msi
+τρεξεται το αρχειο .msi > πατηστε το Complete install
 δημιουργιστε ενα φακελο C:/data/db
 ανοιξτε ενα command line ("window key" + R)  cmd
 cd C:\\Program Files\\MongoDB\\Server\\3.2\\bin
