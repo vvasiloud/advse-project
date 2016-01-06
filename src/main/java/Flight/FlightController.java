@@ -8,7 +8,7 @@ public class FlightController {
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String getFlights(){
-		return "hello World";
+		return "hello World affsafafs";
 	}
 	
 }
