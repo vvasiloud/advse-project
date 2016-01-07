@@ -4,14 +4,15 @@
 Java JdK
 http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
 
-Eclipse for java EE
-https://eclipse.org/downloads/
+Spring Tools
+http://spring.io/tools/sts
 
 Mongo DataBase
 https://www.mongodb.org/downloads#production
 
 SourceTree
 https://www.sourcetreeapp.com/
+
 
 
 Mongo Database Install
