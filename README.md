@@ -1,4 +1,4 @@
-# advse-project
+# EtherasTickets
 
 Θα χρειάζεται
 Java JdK
@@ -14,7 +14,6 @@ SourceTree
 https://www.sourcetreeapp.com/
 
 
-
 Mongo Database Install
 τρέξετε το αρχείο .msi > πατήστε το Complete install
 δημιουργήστε ενα φάκελο C:/data/db
@@ -26,23 +25,13 @@ mongod
 
 Κάνετε clone από το git στο Source Tree
 
-Import στο Eclipse
+Import στο Spring Tools
 File > Import... > Maven > Existing Maven Projects
 
 Στο source Tree κάντε ingore τα αρχεία και φακέλους με . μπροστά
 
-Βάλτε το jdk
-Επιλέξτε το project > δεξί κλικ > Properties > Java Build Path > Libraries
 
-Επιλέξτε to JRE System > Edit > Alternate JRE > Installed JREs > Add > Standard VM > JRE HOME: C:\\Program Files\\Java\\jdk1.8.0_65 > Finish
+Run in Spring Tools
+Επιλέξτε το project > δεξί κλικ > Run as > Spring Boot App
 
-Επιλέξτε to jdk1.8.0 και πατήστε ΟΚ , μεάα πατήστε Finish . Τέλος πατήστε ΟΚ
 
-Run in Eclipse
-Επιλέξτε το project > δεξί κλικ > Run as > Maven build...
-
-Goals: spring-boot:run
-Πατήστε Apply και μετά Run
-
-Δοκιμή
-Ανοίξτε browser localhost:8080/greeting
