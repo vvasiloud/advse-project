@@ -24,9 +24,12 @@ public class FlightController {
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<Flight>> getFlights(
 			@RequestParam(name="to" , required=false) String to,
-			@RequestParam(name="from" , required=false) String from
+			@RequestParam(name="from" , required=false) String from,
+			@RequestParam(name="availableSeats" , required=false) String availableSeats,
+			@RequestParam(name="maxPrice" , required=false) String maxPrice,
+			@RequestParam(name="minPrice" , required=false) String minPrice
 	){
-		return new ResponseEntity<List<Flight>>(repository.searchFlights(to, from), HttpStatus.OK);
+		return new ResponseEntity<List<Flight>>( repository.searchFlights(to, from, availableSeats, maxPrice, minPrice), HttpStatus.OK);
 	}
 	
 	
