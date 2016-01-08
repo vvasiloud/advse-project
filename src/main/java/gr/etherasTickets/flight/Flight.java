@@ -1,21 +1,42 @@
 package gr.etherasTickets.flight;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.ArrayList;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 public class Flight {
 	@Id
 	private String id;
 	
+	@DateTimeFormat(iso = ISO.DATE_TIME)
 	private Date date;
-	private ArrayList<Seat>  seats;
-	private double price;
-	private int availableSeats;
 	
 	private String to;
 	private String from;
+	
+	private double price;
+	
+	private ArrayList<Seat>  seats;
+	private int availableSeats;
+	private int maxSeats;
+	
+	
+	public Flight(){}
+	
+	public Flight(String from , String to , double price, int maxSeats , Date date) {
+		this.date = date;
+		this.to = to;
+		this.from = from;
+		this.price = price;
+		this.maxSeats = maxSeats;
+		availableSeats = maxSeats;
+	}
+
+	
+	
 	
 	
 	public int getAvailableSeats() {
@@ -63,5 +84,13 @@ public class Flight {
 
 	public void setFrom(String from) {
 		this.from = from;
+	}
+
+	public int getMaxSeats() {
+		return maxSeats;
+	}
+
+	public void setMaxSeats(int maxSeats) {
+		this.maxSeats = maxSeats;
 	}
 }
