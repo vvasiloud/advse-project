@@ -1,5 +1,6 @@
 package gr.etherasTickets.flight;
 
+import java.util.List;
 import java.sql.Date;
 import java.util.ArrayList;
 
@@ -10,7 +11,7 @@ public class Flight {
 	private String id;
 	
 	private Date date;
-	private ArrayList<Seat>  seats;
+	private List<Seat>  seats;
 	private double price;
 	private int availableSeats;
 	
@@ -34,7 +35,7 @@ public class Flight {
 		this.date = date;
 	}
 
-	public ArrayList<Seat> getSeats() {
+	public List<Seat> getSeats() {
 		return seats;
 	}
 

@@ -26,16 +26,19 @@ public class FlightController {
 			@RequestParam(name="to" , required=false) String to,
 			@RequestParam(name="from" , required=false) String from,
 			@RequestParam(name="availableSeats" , required=false) String availableSeats,
-			@RequestParam(name="maxPrice" , required=false) String maxPrice,
-			@RequestParam(name="minPrice" , required=false) String minPrice
+			@RequestParam(value="maxPrice" , required=false, defaultValue = "0.0") double maxPrice,
+			@RequestParam(value="minPrice" , required=false, defaultValue = "0.0") double minPrice
 	){
+		
 		return new ResponseEntity<List<Flight>>( repository.searchFlights(to, from, availableSeats, maxPrice, minPrice), HttpStatus.OK);
 	}
 	
-	
+		
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity createFlight(@RequestBody Flight newFlight){
 		repository.save(newFlight);
+		
+				
 		return new ResponseEntity(HttpStatus.OK);
 	}
 	

@@ -8,5 +8,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface FlightRepository extends MongoRepository<Flight, String> , CustomFlightRepository  {
 	
-	List<Flight> searchFlights(String to, String from, String availableSeats, String maxPrice, String minPrice);
+	List<Flight> searchFlights(String to, String from, String availableSeats, double maxPrice, double minPrice);
 }

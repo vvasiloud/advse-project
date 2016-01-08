@@ -17,10 +17,9 @@ public class FlightRepositoryImpl implements CustomFlightRepository  {
 		Assert.notNull(operations, "MongoOperations must not be null!");
 		this.operations = operations;
 	}
-
-
+	
 	@Override
-	public List<Flight> searchFlights(String to, String from,String availableSeats, String maxPrice, String minPrice) {
+	public List<Flight> searchFlights(String to, String from,String availableSeats, double maxPrice, double minPrice) {
 		Query query = new Query();
 		
 		if(to != null)
@@ -31,10 +30,10 @@ public class FlightRepositoryImpl implements CustomFlightRepository  {
 		if(availableSeats!=null)
 			query.addCriteria(Criteria.where("seat").is(availableSeats));
 		
-		if(maxPrice!=null)
-			query.addCriteria(Criteria.where("price").lt(maxPrice));
+		if(maxPrice!=0)
+			query.addCriteria(Criteria.where("price").lte(maxPrice));
 		
-		if(minPrice!=null)
+		if(minPrice!=0)
 			query.addCriteria(Criteria.where("price").gte(minPrice));
 
 		return operations.find(query, Flight.class);
