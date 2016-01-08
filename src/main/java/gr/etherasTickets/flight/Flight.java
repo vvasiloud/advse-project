@@ -17,7 +17,7 @@ public class Flight {
 	private String to;
 	private String from;
 	
-	private double price;
+	private int price;
 	
 	private ArrayList<Seat>  seats;
 	private int availableSeats;
@@ -26,7 +26,7 @@ public class Flight {
 	
 	public Flight(){}
 	
-	public Flight(String from , String to , double price, int maxSeats , Date date) {
+	public Flight(String from , String to , int price, int maxSeats , Date date) {
 		this.date = date;
 		this.to = to;
 		this.from = from;
@@ -63,11 +63,11 @@ public class Flight {
 		this.seats = seats;
 	}
 
-	public double getPrice() {
+	public int getPrice() {
 		return price;
 	}
 
-	public void setPrice(double price) {
+	public void setPrice(int price) {
 		this.price = price;
 	}
 	public String getTo() {

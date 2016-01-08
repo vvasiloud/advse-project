@@ -20,7 +20,7 @@ public class FlightRepositoryImpl implements CustomFlightRepository  {
 
 
 	@Override
-	public List<Flight> searchFlights(String to, String from,String availableSeats, String maxPrice, String minPrice) {
+	public List<Flight> searchFlights(String to, String from,String availableSeats, int maxPrice, int minPrice) {
 		Query query = new Query();
 		
 		if(to != null)
@@ -28,13 +28,14 @@ public class FlightRepositoryImpl implements CustomFlightRepository  {
 		
 		if(from != null)
 			query.addCriteria(Criteria.where("from").is(from));
+		
 		if(availableSeats!=null)
 			query.addCriteria(Criteria.where("seat").is(availableSeats));
 		
-		if(maxPrice!=null)
+		if(maxPrice > 0)
 			query.addCriteria(Criteria.where("price").lte(maxPrice));
 		
-		if(minPrice!=null)
+		if(minPrice > 0)
 			query.addCriteria(Criteria.where("price").gte(minPrice));
 
 		return operations.find(query, Flight.class);

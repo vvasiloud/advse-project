@@ -18,21 +18,15 @@ public class FlightController {
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<Flight>> getFlights(
-			@RequestParam(name="to" , required=false) String to,
-			@RequestParam(name="from" , required=false) String from,
-			@RequestParam(name="availableSeats" , required=false) String availableSeats,
-			@RequestParam(name="maxPrice" , required=false) String maxPrice,
-			@RequestParam(name="minPrice" , required=false) String minPrice
+			@RequestParam(required=false) String to,
+			@RequestParam(required=false) String from,
+			@RequestParam(required=false) String availableSeats,
+			@RequestParam(name="maxPrice" , required=false , defaultValue="-1") int maxPrice,
+			@RequestParam(name="minPrice" , required=false , defaultValue="-1") int minPrice
 	){
 		return new ResponseEntity<List<Flight>>( repository.searchFlights(to, from, availableSeats, maxPrice, minPrice), HttpStatus.OK);
 	}
 	
-	
-	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity createFlight(@RequestBody Flight newFlight){
-		repository.save(newFlight);
-		return new ResponseEntity(HttpStatus.OK);
-	}
 	
 	
 	

@@ -27,7 +27,7 @@ public class FlightControllerTest {
 	
 	@Test
 	public void testCreateRandomFlights(){
-		int flightsSize = 20;
+		int flightsSize = 50;
 		Flight[] flights = new Flight[flightsSize];
 		
 		
@@ -43,6 +43,9 @@ public class FlightControllerTest {
 			repository.save(flights[i]);
 		}
 	}
+	
+	
+	
 	
 	
 	Date getRandomDate(){
