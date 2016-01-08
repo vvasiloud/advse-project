@@ -32,7 +32,7 @@ public class FlightRepositoryImpl implements CustomFlightRepository  {
 			query.addCriteria(Criteria.where("seat").is(availableSeats));
 		
 		if(maxPrice!=null)
-			query.addCriteria(Criteria.where("price").lt(maxPrice));
+			query.addCriteria(Criteria.where("price").lte(maxPrice));
 		
 		if(minPrice!=null)
 			query.addCriteria(Criteria.where("price").gte(minPrice));
