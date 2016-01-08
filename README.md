@@ -33,5 +33,3 @@ File > Import... > Maven > Existing Maven Projects
 
 Run in Spring Tools
 Επιλέξτε το project > δεξί κλικ > Run as > Spring Boot App
-
-
