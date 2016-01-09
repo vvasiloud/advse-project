@@ -11,7 +11,7 @@ import java.util.List;
 
 public class UserRepositoryImpl implements CustomUserRepository {
 
-    private final MongoOperations operations;
+    private final MongoOperations operations; //Class for communicating with mongoDB
 
     @Autowired
     public UserRepositoryImpl(MongoOperations operations) {
@@ -22,7 +22,6 @@ public class UserRepositoryImpl implements CustomUserRepository {
     @Override
     public User getUserById(String id) {
          User user = operations.findOne(new Query(Criteria.where("_id").is(id)), User.class, "users");
-
         return user;
     }
 
@@ -40,4 +39,12 @@ public class UserRepositoryImpl implements CustomUserRepository {
         String userId = user.getId();
         return userId;
     }
+
+	@Override
+	public void removeUser(String id) {
+		operations.findAndRemove(new Query(Criteria.where("_id").is(id)), User.class, "users");
+			
+	}
+    
+  
 }

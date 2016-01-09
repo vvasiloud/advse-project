@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.ArrayList;
 import java.util.List;
 
-@Document(collection = "users")
+@Document(collection = "users") // Table users creation message to MongoDB
 public class User {
 
     @Id
@@ -15,7 +15,7 @@ public class User {
     private String firstName;
     private String lastName;
 
-    @Indexed(unique=true)
+    @Indexed(unique=true) //unique for username
     private String username;
     private String email;
     private String password;

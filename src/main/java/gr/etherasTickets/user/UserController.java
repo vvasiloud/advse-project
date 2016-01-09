@@ -18,7 +18,7 @@ import java.util.Map;
 @RequestMapping("/users")
 public class UserController {
 
-    @Autowired
+    @Autowired // new object on demand (dependency injection)
     private UserRepository repository;
 
     @RequestMapping(value = "/getUser" , method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -50,6 +50,12 @@ public class UserController {
 
         repository.createUser(id.toString(),firstname,lastname,email,username,password, 0, new ArrayList<>());
 
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    
+    @RequestMapping(value = "/remove" , method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> removeUser(@RequestParam(name="id" , required=true) String id){
+    	repository.removeUser(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

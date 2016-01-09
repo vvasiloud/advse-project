@@ -2,13 +2,19 @@ package gr.etherasTickets.user;
 
 import static org.junit.Assert.*;
 import java.util.ArrayList;
+
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoOperations;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
+import org.springframework.util.Assert;
 
 import gr.etherasTickets.EtherasTicketsApplication;
 
@@ -19,15 +25,22 @@ public class UserTest {
 	@Autowired 
 	private UserRepository repository;
 	private User expectedUser;
-
+ 
+    
 	@Before
     public void setUp() {
 		//create test user
 		expectedUser = new User("23459","Vasilis","Georgakopoulos","tralala@mail.com","vgeorga","pass123",0.0, new ArrayList<Reservation>());
         System.out.println("@Before - setUp");
     }
-		
-	
+
+	@After
+    public void tearDown() {
+		//delete what you have created
+		repository.removeUser("23459");
+        System.out.println("@After - tearDown");
+    }
+
 	@Test
 	public void testCreateUser(){
 		//insert user inside mongoDB
@@ -38,10 +51,13 @@ public class UserTest {
 	}
 	
 	@Test
-	public void testLogin(){
-		
-		
+	public void testRemoveUser(){
+		//delete user
+		repository.removeUser("23459");
+	
 	}
+	
+	
 
 
 
