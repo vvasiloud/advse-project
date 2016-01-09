@@ -30,7 +30,11 @@ public class FlightRepositoryImpl implements CustomFlightRepository  {
 		if(availableSeats!=null)
 			query.addCriteria(Criteria.where("seat").is(availableSeats));
 		
+<<<<<<< HEAD
 		if(maxPrice!=0)
+=======
+		if(maxPrice!=null)
+>>>>>>> e5565d70fcd4c03a08672deb65bff7109f677d78
 			query.addCriteria(Criteria.where("price").lte(maxPrice));
 		
 		if(minPrice!=0)
