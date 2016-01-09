@@ -4,9 +4,12 @@ import java.util.Date;
 import java.util.ArrayList;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
+
+@Document(collection = "flights")
 public class Flight {
 	@Id
 	private String id;
