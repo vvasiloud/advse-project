@@ -14,7 +14,7 @@ import gr.etherasTickets.EtherasTicketsApplication;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = EtherasTicketsApplication.class, loader = AnnotationConfigContextLoader.class)
-public class FlightControllerTest {
+public class FlightTest {
 	
 	private final String citiesPool[] = {"Thessaloniki" , "Ioannina" , "Athens" , "Patras" , "Heraklion" , "Rhodes" , "Larissa" , "Volos"};
 	private final Integer pricePool[] = {20 , 30 , 50 , 80 , 100 , 150 , 200 , 300};
@@ -46,10 +46,8 @@ public class FlightControllerTest {
 	
 	
 	
-	
-	
 	Date getRandomDate(){
-		return new Date();
+		return new Date(System.currentTimeMillis() + random.nextLong());
 	}
 	
 	int getRandomMaxSeat(){
