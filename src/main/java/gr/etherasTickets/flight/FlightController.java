@@ -24,13 +24,10 @@ public class FlightController {
 			@RequestParam(required=false) String to,
 			@RequestParam(required=false) String from,
 			@RequestParam(required=false , defaultValue="-1") int availableSeats,
-			@RequestParam(name="maxPrice" , required=false , defaultValue="-1") int maxPrice,
-			@RequestParam(name="minPrice" , required=false , defaultValue="-1") int minPrice
+			@RequestParam(name="minPrice" , required=false , defaultValue="-1") int minPrice,
+			@RequestParam(name="maxPrice" , required=false , defaultValue="-1") int maxPrice
 	) throws BadArguments{
-		
-		 
-		
-		return new ResponseEntity<List<Flight>>( repository.searchFlights(to, from, availableSeats, maxPrice, minPrice), HttpStatus.OK);
+		return new ResponseEntity<List<Flight>>( repository.searchFlights(to, from, availableSeats, minPrice, maxPrice), HttpStatus.OK);
 	}
 	
 
