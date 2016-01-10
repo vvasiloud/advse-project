@@ -21,7 +21,7 @@ public class FlightRepositoryImpl implements CustomFlightRepository  {
 	}
 	
 	@Override
-	public List<Flight> searchFlights(String to, String from,int availableSeats, int maxPrice, int minPrice) throws BadArguments {
+	public List<Flight> searchFlights(String to, String from,int availableSeats , int minPrice , int maxPrice) throws BadArguments {
 		Query query = new Query();
 		
 		if(to != null)
@@ -33,14 +33,14 @@ public class FlightRepositoryImpl implements CustomFlightRepository  {
 		if(availableSeats>0)
 			query.addCriteria(Criteria.where("seat").is(availableSeats));
 		
-		if((maxPrice > 0 && minPrice > 0) && minPrice > maxPrice)
-			throw new BadArguments("minPrice must be lower than maxPrice");
-		
-		if(maxPrice > 0)
-		query.addCriteria(Criteria.where("price").lte(maxPrice));
-		
-			
-		if(minPrice > 0)
+		if(maxPrice > 0 && minPrice > 0)
+			if(minPrice > maxPrice)
+				throw new BadArguments("minPrice must be lower than maxPrice");
+			else if(minPrice == maxPrice)
+				query.addCriteria(Criteria.where("price").is(maxPrice));
+		else if(maxPrice > 0)
+			query.addCriteria(Criteria.where("price").lte(maxPrice));
+		else if(minPrice > 0)
 			query.addCriteria(Criteria.where("price").gte(minPrice));
 
 		return operations.find(query, Flight.class);
