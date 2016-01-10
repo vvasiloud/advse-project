@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
 import gr.etherasTickets.exceptions.BadArguments;
 
 
@@ -27,13 +28,16 @@ public class FlightController {
 			@RequestParam(name="minPrice" , required=false , defaultValue="-1") int minPrice
 	) throws BadArguments{
 		
+		 
+		
 		return new ResponseEntity<List<Flight>>( repository.searchFlights(to, from, availableSeats, maxPrice, minPrice), HttpStatus.OK);
 	}
 	
-		
+
 	@ExceptionHandler(BadArguments.class)
 	public ResponseEntity<String> badArgumentsHandler(BadArguments ex){
 		return new  ResponseEntity<String>(String.format("{\"error\":\"%s\"}", ex.getMessage()),HttpStatus.BAD_REQUEST);
 	}
+
 	
 }
