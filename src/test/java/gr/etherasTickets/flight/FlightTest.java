@@ -46,6 +46,8 @@ public class FlightTest {
 	
 	
 	
+	
+	
 	Date getRandomDate(){
 		return new Date(System.currentTimeMillis() + random.nextLong());
 	}
