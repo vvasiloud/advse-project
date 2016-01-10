@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,6 +15,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
+
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -21,8 +24,8 @@ public class UserController {
     @Autowired // new object on demand (dependency injection)
     private UserRepository repository;
 
-    @RequestMapping(value = "/getUser" , method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<User> getUser(@RequestParam(name="id" , required=true) String id){
+    @RequestMapping(path = "/{id}" , method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<User> getUser(@PathVariable String id){
         return new ResponseEntity<>(repository.getUserById(id), HttpStatus.OK);
     }
 
@@ -30,11 +33,9 @@ public class UserController {
     public ResponseEntity<String> authorize(@RequestParam Map<String,String> requestParams) throws Exception{
         String username=requestParams.get("username");
         String password=requestParams.get("password");
-
         String response = repository.userLogin(username,password);
         Map<String,String> jsonResponse = new HashMap<String,String>();
         jsonResponse.put("_userId", response);
-
         return new ResponseEntity<>(jsonResponse.toString(), HttpStatus.OK);
     }
     

@@ -50,6 +50,7 @@ public class UserTest {
 		assertEquals(expectedUser.getUsername(), actualUser.getUsername());
 	}
 	
+	
 	@Test
 	public void testRemoveUser(){
 		//delete user
@@ -57,8 +58,4 @@ public class UserTest {
 	
 	}
 	
-	
-
-
-
 	}
