@@ -40,27 +40,6 @@ public class FlightTest {
 		
 	}
 	
-	
-	@Test 
-
-	public void testMinMaxFlightArguments()throws Exception{
-		
-		
-		
-			mockMvc.perform(get("/flights").param("maxPrice", "0").param("minPrice","0"))
-			.andExpect(status().isOk());
-								
-			mockMvc.perform(get("/flights").param("maxPrice", "50").param("minPrice","50"))
-			.andExpect(status().isOk())
-			.andExpect(jsonPath("$[0].price", is(50)));
-			
-			mockMvc.perform(get("/flights").param("maxPrice", "30").param("minPrice","50"))
-			.andExpect(status().isBadRequest());
-			
-			mockMvc.perform(get("/flights").param("maxPrice", "50").param("minPrice","30"))
-			.andExpect(status().isOk())
-			.andExpect(jsonPath("$[0].price", gte(1)));
-			
 			
 		
 	public void testMinMaxPriceFlightArguments() throws Exception{
