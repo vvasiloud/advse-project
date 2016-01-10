@@ -30,7 +30,6 @@ public class FlightTest {
 		int flightsSize = 50;
 		Flight[] flights = new Flight[flightsSize];
 		
-		
 		for(int i = 0 ; i< flights.length;i++){
 			String from = getRandomCity();
 			String to = getRandomCity(from);
