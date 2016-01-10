@@ -53,6 +53,8 @@ public class FlightTest {
 	@Test 
 	public void testMinMaxFlightArguments()throws Exception{
 		
+		
+		
 			mockMvc.perform(get("/flights").param("maxPrice", "0").param("minPrice","0"))
 			.andExpect(status().isOk());
 								
