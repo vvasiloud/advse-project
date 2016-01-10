@@ -9,6 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
+import org.springframework.test.web.servlet.MockMvc;
+
+import static org.hamcrest.Matchers.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import gr.etherasTickets.EtherasTicketsApplication;
 
@@ -20,6 +25,7 @@ public class FlightTest {
 	private final Integer pricePool[] = {20 , 30 , 50 , 80 , 100 , 150 , 200 , 300};
 	private final Integer seatPool[] = {40 , 50 , 60 , 70 , 100};
 	private final Random random = new Random();
+	private MockMvc mockMvc;
 	
 	
 	@Autowired
@@ -44,7 +50,33 @@ public class FlightTest {
 		}
 	}
 	
-	
+	@Test 
+	public void testMinMaxFlightArguments()throws Exception{
+		
+			mockMvc.perform(get("/flights").param("maxPrice", "0").param("minPrice","0"))
+			.andExpect(status().isOk());
+								
+			mockMvc.perform(get("/flights").param("maxPrice", "50").param("minPrice","50"))
+			.andExpect(status().isOk())
+			.andExpect(jsonPath("$[0].price", is(50)));
+			
+			mockMvc.perform(get("/flights").param("maxPrice", "30").param("minPrice","50"))
+			.andExpect(status().isBadRequest());
+			
+			mockMvc.perform(get("/flights").param("maxPrice", "50").param("minPrice","30"))
+			.andExpect(status().isOk())
+			.andExpect(jsonPath("$[0].price", gte(1)));
+			
+			
+		
+			
+		
+		
+		
+		
+		
+		
+	}
 	
 	
 	

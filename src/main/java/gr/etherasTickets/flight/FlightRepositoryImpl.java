@@ -8,6 +8,8 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.util.Assert;
 
+import gr.etherasTickets.exceptions.BadArguments;
+
 public class FlightRepositoryImpl implements CustomFlightRepository  {
 	
 	private final MongoOperations operations;
@@ -19,7 +21,7 @@ public class FlightRepositoryImpl implements CustomFlightRepository  {
 	}
 	
 	@Override
-	public List<Flight> searchFlights(String to, String from,String availableSeats, int maxPrice, int minPrice) {
+	public List<Flight> searchFlights(String to, String from,int availableSeats, int maxPrice, int minPrice) throws BadArguments {
 		Query query = new Query();
 		
 		if(to != null)
@@ -28,12 +30,16 @@ public class FlightRepositoryImpl implements CustomFlightRepository  {
 		if(from != null)
 			query.addCriteria(Criteria.where("from").is(from));
 		
-		if(availableSeats!=null)
+		if(availableSeats>0)
 			query.addCriteria(Criteria.where("seat").is(availableSeats));
 		
-		if(maxPrice > 0)
-			query.addCriteria(Criteria.where("price").lte(maxPrice));
+		if((maxPrice > 0 && minPrice > 0) && minPrice > maxPrice)
+			throw new BadArguments("minPrice must be lower than maxPrice");
 		
+		if(maxPrice > 0)
+		query.addCriteria(Criteria.where("price").lte(maxPrice));
+		
+			
 		if(minPrice > 0)
 			query.addCriteria(Criteria.where("price").gte(minPrice));
 
