@@ -45,6 +45,24 @@ public class FlightRepositoryImpl implements CustomFlightRepository  {
 
 		return operations.find(query, Flight.class);
 	}
+	
+	public List<Seat> getSeatsById(String flightId)throws BadArguments{
 
+		return getFlightById(flightId).getSeats();
+	}
+	
+	public Flight getFlightById (String flightId)throws BadArguments{
+		
+		Query query = new Query();
+		if (flightId!=null)
+			query.addCriteria(Criteria.where("_id").is(flightId));
+		
+						
+		return operations.findOne(query, Flight.class);
+		
+	}
+
+	
+	
 
 }

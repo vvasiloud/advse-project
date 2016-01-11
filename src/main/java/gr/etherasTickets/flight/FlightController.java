@@ -30,11 +30,30 @@ public class FlightController {
 		return new ResponseEntity<List<Flight>>( repository.searchFlights(to, from, availableSeats, minPrice, maxPrice), HttpStatus.OK);
 	}
 	
+	@RequestMapping( value = "flights/{flightId}", method = RequestMethod.GET )
+	public ResponseEntity<Flight> getFlightsById(@PathVariable String flightId) throws BadArguments
+	{
+		return new ResponseEntity<> (repository.getFlightById(flightId),HttpStatus.OK);
+		
+	}
+	
+	@RequestMapping( value = "flights/{flightId}/seats", method = RequestMethod.GET )
+	public ResponseEntity<List<Seat>> getSeatsByFlightId(
+			@PathVariable String flightId
+			
+			
+			) throws BadArguments
+	{
+		return new ResponseEntity<> (repository.getSeatsById(flightId),HttpStatus.OK);
+		
+	}
 
 	@ExceptionHandler(BadArguments.class)
 	public ResponseEntity<String> badArgumentsHandler(BadArguments ex){
 		return new  ResponseEntity<String>(String.format("{\"error\":\"%s\"}", ex.getMessage()),HttpStatus.BAD_REQUEST);
 	}
+	
+	
 
 	
 }
