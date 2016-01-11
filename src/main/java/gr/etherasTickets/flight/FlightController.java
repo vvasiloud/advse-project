@@ -30,14 +30,14 @@ public class FlightController {
 		return new ResponseEntity<List<Flight>>( repository.searchFlights(to, from, availableSeats, minPrice, maxPrice), HttpStatus.OK);
 	}
 	
-	@RequestMapping( value = "flights/{flightId}", method = RequestMethod.GET )
+	@RequestMapping( value = "/{flightId}", method = RequestMethod.GET )
 	public ResponseEntity<Flight> getFlightsById(@PathVariable String flightId) throws BadArguments
 	{
 		return new ResponseEntity<> (repository.getFlightById(flightId),HttpStatus.OK);
 		
 	}
 	
-	@RequestMapping( value = "flights/{flightId}/seats", method = RequestMethod.GET )
+	@RequestMapping( value = "/{flightId}/seats", method = RequestMethod.GET )
 	public ResponseEntity<List<Seat>> getSeatsByFlightId(
 			@PathVariable String flightId
 			
