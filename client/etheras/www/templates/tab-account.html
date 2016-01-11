@@ -1,5 +1,75 @@
 <ion-view view-title="Account">
-  <ion-content>
+	<ion-nav-buttons side="primary">
+	  <button class="button">
+         € {{user.balance}}
+      </button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="secondary">
+      <button class="button button-logout" ng-click="logout()">
+        <i class="icon ion-log-out"></i>
+      </button>
+    </ion-nav-buttons>
 
+  <ion-content class="background">
+  		<div class="user">
+  			<h1>{{user.firstName}} {{user.lastName}}</h1>
+  			<h3> #{{user.username}} </h3>
+  		</div>
+
+  		<div class="reservations">
+	  		<h3>My reservations:</h3>
+
+	  		<div class="list card">
+
+			  <div class="item item-title">
+			    <h2>From ->To</h2>
+			    <p>November 05, 1955</p>
+			  </div>
+
+			  <div class="item item-body">
+			  	<div class="row">
+			  		<div class="col col-33">
+			  			<p>Departure</p>
+			  		</div>
+			  		<div class="col col-67">
+			  			<p class="bold">aerodromio</p>
+			  			<p>wra</p>
+			  		</div>
+			  	</div>
+			  	<div class="row">
+			  		<div class="col col-33">
+			  			<p>Arrival</p>
+			  		</div>
+			  		<div class="col col-67">
+			  			<p class="bold">aerodromio</p>
+			  			<p>wra</p>
+			  		</div>
+			  	</div>
+
+			  	<div class="row">
+			  		<div class="col col-33">
+			  			<p>Seat:</p>
+			  		</div>
+			  		<div class="col col-67">
+			  			<p class="bold">Α32</p>
+			  		</div>
+			  	</div>
+
+			  	<div class="row">
+			  		<div class="col col-33">
+			  			<p>Cost:</p>
+			  		</div>
+			  		<div class="col col-67">
+			  			<p class="bold"> € 100</p>
+			  		</div>
+			  	</div>
+
+			    
+			    
+			  </div>
+
+		</div>
+
+  		</div>
   </ion-content>
 </ion-view>

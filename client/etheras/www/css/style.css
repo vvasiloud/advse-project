@@ -1,1 +1,49 @@
 /* Empty. Add your own CSS if you like */
+
+.background {
+	background: url("../img/background.jpg") no-repeat center center fixed;
+	-webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+
+}
+
+.user {
+	padding-top: 10px;
+	text-align: center;
+}
+.user h1{
+	color: #013746;
+	font-size: 30px;
+}
+
+.user h3 {
+	color: #0082a5 ;
+}
+
+.reservations{
+	padding-top: 40px;
+}
+
+.reservations h3 {
+	text-align: center;
+	color: #013746;
+	font-size: 20px;
+}
+
+.item-title {
+	background: rgba(63, 155, 199, 0.68);
+}
+
+.item-title h2{
+	font-size: 19px;
+}
+
+.item-body {
+    background: rgba(223, 228, 230, 0.89);
+}
+
+.reservations .bold {
+	color: #013746;
+	font-size: 16px;
+}
