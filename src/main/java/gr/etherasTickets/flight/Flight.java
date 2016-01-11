@@ -9,25 +9,36 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import gr.etherasTickets.View;
+
 
 @Document(collection = "flights")
 public class Flight {
+	@JsonView(View.Summary.class)
 	@Id
 	private String id;
 	
+	@JsonView(View.Summary.class)
 	@DateTimeFormat(iso = ISO.DATE_TIME)
-	
 	private Date date;
-	private List<Seat> seats;
 	
+	
+	@JsonView(View.Summary.class)
 	private String to;
+	
+	@JsonView(View.Summary.class)
 	private String from;
 	
+	@JsonView(View.Summary.class)
 	private int price;
 	
+	@JsonView(View.Summary.class)
 	private int availableSeats;
-	private int maxSeats;
 	
+	private int maxSeats;
+	private List<Seat> seats;
 	
 	public Flight(){}
 	
