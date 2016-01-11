@@ -13,10 +13,10 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 @Document(collection = "flights")
 public class Flight {
 	@Id
-	private String hashId;
+	private String id;
 	
 	@DateTimeFormat(iso = ISO.DATE_TIME)
-	private long id;
+	
 	private Date date;
 	private List<Seat> seats;
 	
@@ -39,6 +39,12 @@ public class Flight {
 		this.maxSeats = maxSeats;
 		availableSeats = maxSeats;
 		seats = createSeats(maxSeats, 6);
+	}
+	
+	public String getId(){
+		
+		return id;
+		
 	}
 
 	public static List<Seat> createSeats(int maxSeats , int seatRowWidth){
