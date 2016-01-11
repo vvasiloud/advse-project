@@ -26,24 +26,17 @@ public class FlightController {
 			@RequestParam(required=false , defaultValue="-1") int availableSeats,
 			@RequestParam(name="minPrice" , required=false , defaultValue="-1") int minPrice,
 			@RequestParam(name="maxPrice" , required=false , defaultValue="-1") int maxPrice
-	) throws BadArguments{
+	)throws BadArguments{
 		return new ResponseEntity<List<Flight>>( repository.searchFlights(to, from, availableSeats, minPrice, maxPrice), HttpStatus.OK);
 	}
 	
 	@RequestMapping( value = "flights/{flightId}", method = RequestMethod.GET )
-	public ResponseEntity<Flight> getFlightsById(@PathVariable String flightId) throws BadArguments
-	{
+	public ResponseEntity<Flight> getFlightsById(@PathVariable String flightId) throws BadArguments{
 		return new ResponseEntity<> (repository.getFlightById(flightId),HttpStatus.OK);
-		
 	}
 	
 	@RequestMapping( value = "flights/{flightId}/seats", method = RequestMethod.GET )
-	public ResponseEntity<List<Seat>> getSeatsByFlightId(
-			@PathVariable String flightId
-			
-			
-			) throws BadArguments
-	{
+	public ResponseEntity<List<Seat>> getSeatsByFlightId(@PathVariable String flightId) throws BadArguments{
 		return new ResponseEntity<> (repository.getSeatsById(flightId),HttpStatus.OK);
 		
 	}

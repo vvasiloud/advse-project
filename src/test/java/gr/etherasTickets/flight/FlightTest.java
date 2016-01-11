@@ -43,7 +43,6 @@ public class FlightTest {
 	@Test
 	public void testMinMaxPriceFlightArguments() throws Exception{
 		List<Flight> flights;
-
 		
 		//Equal price Test
 		flights = repository.searchFlights(null, null, -1, 50, 50);
@@ -70,7 +69,8 @@ public class FlightTest {
 	}
 	
 	@Test
-	public void testCreateSeats(){
+	public void testGetFlight(){
+		
 	} 
 	
 	
