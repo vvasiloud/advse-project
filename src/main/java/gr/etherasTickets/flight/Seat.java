@@ -10,6 +10,13 @@ public class Seat {
 	private String code;
 	private boolean isReserved;
 	
+	public Seat(){}
+	
+	public Seat(String code){
+		this.code = code;
+		isReserved = false;
+	}
+	
 	public String getCode() {
 		return code;
 	}

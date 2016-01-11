@@ -37,11 +37,10 @@ public class FlightTest {
 		repository.save(new Flight("Thessaloniki", "Ioannina", 30, 60, new Date()));
 		repository.save(new Flight("Athens", "Thessaloniki", 40, 60, new Date()));
 		repository.save(new Flight("Thessaloniki", "Heraklion", 100, 60, new Date()));
-		
 	}
 	
 			
-		
+	@Test
 	public void testMinMaxPriceFlightArguments() throws Exception{
 		List<Flight> flights;
 
@@ -69,6 +68,10 @@ public class FlightTest {
 		if(flights.isEmpty())
 			throw new Exception("Test minPrice 0 and maxPrice 0 is empty");
 	}
+	
+	@Test
+	public void testCreateSeats(){
+	} 
 	
 	
 }

@@ -1,6 +1,7 @@
 package gr.etherasTickets.flight;
 
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Date;
 
 import org.springframework.data.annotation.Id;
@@ -16,7 +17,7 @@ public class Flight {
 	
 	@DateTimeFormat(iso = ISO.DATE_TIME)
 	private Date date;
-	private List<Seat>  seats;
+	private List<Seat> seats;
 	
 	private String to;
 	private String from;
@@ -29,15 +30,32 @@ public class Flight {
 	
 	public Flight(){}
 	
-	public Flight(String from , String to , int price, int maxSeats , Date date) {
+	public Flight(String from , String to , int price, int maxSeats , Date date ) {
 		this.date = date;
 		this.to = to;
 		this.from = from;
 		this.price = price;
 		this.maxSeats = maxSeats;
 		availableSeats = maxSeats;
+		seats = createSeats(maxSeats, 6);
 	}
 
+	public static List<Seat> createSeats(int maxSeats , int seatRowWidth){
+		List<Seat> seats = new ArrayList<Seat>();
+		char seatLetter = 'A';
+		int seatnumder = 1;
+		for(int i = 0 ; i < maxSeats ; i++){
+			seats.add(new Seat(String.format("%c%d", seatLetter , seatnumder)));
+			
+			seatnumder++;
+			if(seatnumder > seatRowWidth){
+				seatnumder = 1;
+				seatLetter++;
+			}	
+		}
+		return seats;
+	}
+	
 	public Date getDate() {
 		return date;
 	}
