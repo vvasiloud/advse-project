@@ -12,9 +12,10 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 @Document(collection = "flights")
 public class Flight {
 	@Id
-	private String id;
+	private String hashId;
 	
 	@DateTimeFormat(iso = ISO.DATE_TIME)
+	private long id;
 	private Date date;
 	private List<Seat>  seats;
 	
