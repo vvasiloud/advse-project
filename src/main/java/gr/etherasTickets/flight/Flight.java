@@ -42,7 +42,7 @@ public class Flight {
 	
 	public Flight(){}
 	
-	public Flight(String from , String to , int price, int maxSeats , Date date ) {
+	public Flight(String to , String from , int price, int maxSeats , Date date ) {
 		this.date = date;
 		this.to = to;
 		this.from = from;

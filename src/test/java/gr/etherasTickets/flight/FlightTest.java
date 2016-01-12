@@ -3,10 +3,13 @@ package gr.etherasTickets.flight;
 import java.util.Date;
 import java.util.List;
 
+import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
@@ -25,6 +28,8 @@ public class FlightTest {
 	@Autowired
 	private FlightRepository repository;
 
+	
+	
 	@Before
 	public void SetUp(){
 		repository.deleteAll();
@@ -35,65 +40,60 @@ public class FlightTest {
 		repository.save(new Flight("Athens", "Thessaloniki", 40, 60, new Date()));
 		repository.save(new Flight("Thessaloniki", "Heraklion", 100, 60, new Date()));
 	}
-
-
-	@Test
-	public void testMinMaxPriceFlightArguments() throws Exception{
-		List<Flight> flights;
-
-		//Equal price Test
-		try{
-			flights = repository.searchFlights(null, null, -1, 50, 50);
-			if(!(flights.get(0).getPrice() == 50 && flights.get(1).getPrice() == 50))
-				throw new Exception("Test minPrice 50 and maxPrice 50 price is not equal to 50");
-		}catch(NotFound ex){
-			throw new Exception("Test minPrice 50 and maxPrice 50 is empty");
-		}
-
-		flights = repository.searchFlights(null, null, -1, 30, 50);
-		if(flights.size() != 4 )
-			throw new Exception("Test minPrice 30 and maxPrice 50 is not 4");
-
-		try{
-			flights = repository.searchFlights(null, null, -1, 50, 30);
-			throw new Exception("Test minPrice 50 and maxPrice 30 does not throw BadArguments Exception");
-		}catch(BadArguments ex){
-
-		}
-
-		flights = repository.searchFlights(null, null, -1, 0, 0);
-		if(flights.isEmpty())
-			throw new Exception("Test minPrice 0 and maxPrice 0 is empty");
+	
+	@After
+	public void Restore(){
+		repository.deleteAll();
 	}
 
 	@Test
-	public void testGetFlight() throws Exception{
-		Flight flight;
-
-		//Test get Flight with Exist ID
+	public void testSearchFlightsTo() throws BadArguments, NotFound{
+		List<Flight> flights = repository.searchFlights("Thessaloniki", null, -1, -1, -1);
+		Assert.assertEquals(3 , flights.size());
+	}
+	
+	@Test
+	public void testSearchFlightsFrom() throws BadArguments, NotFound{
+		List<Flight> flights = repository.searchFlights(null, "Athens", -1, -1, -1);
+		Assert.assertEquals(3,flights.size());
+	}
+	
+	@Test
+	public void testSearchFlightsNotExistCity() throws BadArguments{
 		try{
-			String id = repository.findAll().get(0).getId();
-			flight = repository.getFlightById(id);
+			List<Flight> flights = repository.searchFlights(null, "Rhodes", -1, -1, -1);
+			Assert.fail("Rhodes does not exist at from");
 		}catch(NotFound ex){
-			throw new Exception("Exist Flight does not found!");
 		}
-
-		//Test get Flight with id that does not exist
+	}
+	
+	@Test
+	public void testSearchFlightsEqualPrice() throws BadArguments, NotFound{
+		List<Flight> flights = repository.searchFlights(null, "Athens", -1, 50, 50);
+		Assert.assertNotEquals(flights.size(), 1);
+	}
+	
+	@Test
+	public void testSearchFlightsMinPriceGtMaxPrice() throws NotFound{
 		try{
-			flight = repository.getFlightById("af2fa2ra12ffdd12");
-			throw new Exception("Flight with wrong id does not throw NotFound or the id exist");
-		}catch(NotFound ex){
-			// Ok throws notFound
-		}
-
-		//Test get Flight with null for id
-		try{
-			flight = repository.getFlightById(null);
-			throw new Exception("Flight with wrong id does not throw BadArgument");
+			List<Flight> flights = repository.searchFlights(null, "Rhodes", -1, 50, 30);
+			Assert.fail("minPrice > maxPrice must throw BadArguments");
 		}catch(BadArguments ex){
-			// Ok throws BadArguments
 		}
-	} 
-
+	}
+	
+	@Test
+	public void testGetFlightById() throws BadArguments, NotFound{
+		String  flightID = repository.findAll().get(0).getId();
+		Flight flight = repository.getFlightById(flightID);
+		Assert.assertEquals(flightID,flight.getId());
+	}
+	
+	@Test
+	public void testGetFlightByIdSeats() throws BadArguments, NotFound{
+		Flight  flight = repository.findAll().get(0);
+		List<Seat> seats = repository.getSeatsById(flight.getId());
+		Assert.assertEquals(flight.getSeats().get(0).getCode(), seats.get(0).getCode());
+	}
 
 }
