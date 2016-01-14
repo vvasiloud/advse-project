@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.util.Assert;
 
-import gr.etherasTickets.exceptions.BadArguments;
+import gr.etherasTickets.exceptions.*;
 
 public class FlightRepositoryImpl implements CustomFlightRepository  {
 	
@@ -21,7 +21,7 @@ public class FlightRepositoryImpl implements CustomFlightRepository  {
 	}
 	
 	@Override
-	public List<Flight> searchFlights(String to, String from,int availableSeats , int minPrice , int maxPrice) throws BadArguments {
+	public List<Flight> searchFlights(String to, String from,int availableSeats , int minPrice , int maxPrice) throws BadArguments , NotFound {
 		Query query = new Query();
 		
 		if(to != null)
@@ -42,24 +42,30 @@ public class FlightRepositoryImpl implements CustomFlightRepository  {
 			query.addCriteria(Criteria.where("price").lte(maxPrice));
 		else if(minPrice > 0)
 			query.addCriteria(Criteria.where("price").gte(minPrice));
-
-		return operations.find(query, Flight.class);
+		
+		List<Flight> flightList = operations.find(query, Flight.class);
+		if(flightList.isEmpty())
+			throw new NotFound("Not Flights found!");
+		return flightList;
 	}
 	
-	public List<Seat> getSeatsById(String flightId)throws BadArguments{
-
+	public List<Seat> getSeatsById(String flightId)throws BadArguments, NotFound{
 		return getFlightById(flightId).getSeats();
 	}
 	
-	public Flight getFlightById (String flightId)throws BadArguments{
+	public Flight getFlightById (String flightId)throws BadArguments , NotFound{
+		if (flightId==null)
+			throw new BadArguments("FlightId is null");
 		
-		Query query = new Query();
-		if (flightId!=null)
-			query.addCriteria(Criteria.where("_id").is(flightId));
+		Query query = new Query().
+				addCriteria(Criteria.where("_id").is(flightId));
 		
-						
-		return operations.findOne(query, Flight.class);
+		Flight flight =  operations.findOne(query, Flight.class);
 		
+		if(flight == null)
+			throw new NotFound("Flight with id " + flightId + " does not exist!");
+		
+		return flight;
 	}
 
 	
