@@ -1,5 +1,7 @@
 package gr.etherasTickets.flight;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.Date;
 import java.util.List;
 
@@ -14,6 +16,7 @@ import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
 import gr.etherasTickets.EtherasTicketsApplication;
 import gr.etherasTickets.exceptions.BadArguments;
+import gr.etherasTickets.user.User;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = EtherasTicketsApplication.class, loader = AnnotationConfigContextLoader.class)
@@ -21,9 +24,10 @@ public class FlightTest {
 	
 	//Cities Thessaloniki  Ioannina  Athens  Patras Heraklion Rhodes  Larissa  Volos
 	
-	
+		
 	@Autowired
 	private FlightRepository repository;
+
 	
 	@Before
 	public void SetUp(){
@@ -34,6 +38,8 @@ public class FlightTest {
 		repository.save(new Flight("Thessaloniki", "Ioannina", 30, 60, new Date()));
 		repository.save(new Flight("Athens", "Thessaloniki", 40, 60, new Date()));
 		repository.save(new Flight("Thessaloniki", "Heraklion", 100, 60, new Date()));
+		
+		
 	}
 	
 			
@@ -66,9 +72,8 @@ public class FlightTest {
 	}
 	
 	@Test
-	public void testGetFlight(){
+	public void testGetFlightById() throws Exception{
 		
-	} 
-	
+	}
 	
 }
