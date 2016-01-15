@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.util.Assert;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class UserRepositoryImpl implements CustomUserRepository {
 
@@ -26,9 +26,9 @@ public class UserRepositoryImpl implements CustomUserRepository {
     }
 
     @Override
-    public User createUser(String id, String firstname, String lastname, String email, String username, String password,double balance,List<Reservation> reservations) {
-        User user = new User(id,firstname,lastname,email,username,password,balance,reservations);
-        operations.insert(user, "users");
+    public User createUser(User user) {
+        User newUser = new User(user.getFirstName(),user.getLastName(),user.getEmail(),user.getUsername(),user.getPassword(),0,new ArrayList<Reservation>());
+        operations.insert(newUser, "users");
 
         return user;
     }

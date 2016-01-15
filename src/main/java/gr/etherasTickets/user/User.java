@@ -22,8 +22,7 @@ public class User {
     private double balance;
     private List<Reservation> reservations = new ArrayList<>();
 
-    public User(String id, String firstName, String lastName,String email, String username, String password,double balance,List<Reservation> reservations) {
-        this.id = id;
+    public User(String firstName, String lastName,String email, String username, String password,double balance,List<Reservation> reservations) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;

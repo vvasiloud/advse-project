@@ -1,9 +1,12 @@
 package gr.etherasTickets.user;
 
 import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+
 import java.util.ArrayList;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,28 +26,42 @@ public class UserTest {
 	@Autowired 
 	private UserRepository repository;
 	private User expectedUser;
+	private User dummyUser;
  
     
 	@Before
     public void setUp() {
 		//create test user
-		expectedUser = new User("23459","Vasilis","Georgakopoulos","tralala@mail.com","vgeorga","pass123",0.0, new ArrayList<Reservation>());
+		expectedUser = new User("Vasilis","Georgakopoulos","tralala@mail.com","vgeorga","pass123",0.0, new ArrayList<Reservation>());
+		dummyUser = new User("Bill","Preloudios","null@null.com","testUser","pass123",0.0, new ArrayList<Reservation>());
+
+		repository.insert(dummyUser);
         System.out.println("@Before - setUp");
     }
 
 	@After
     public void tearDown() {
 		//delete what you have created
-		repository.removeUser("23459");
+		repository.delete(dummyUser);
         System.out.println("@After - tearDown");
     }
 
 	@Test
+	public void testGetUser(){
+		//update username
+		User expectedUser = repository.findByUsername("testUser");
+		User actualUser = repository.getUserById(expectedUser.getId());
+
+		assertEquals(actualUser.getUsername(),"testUser");
+
+	}
+
+	@Test
 	public void testCreateUser(){
 		//insert user inside mongoDB
-		repository.createUser("23459","Vasilis","Georgakopoulos","tralala@mail.com","vgeorga","pass123",0.0, new ArrayList<Reservation>());
+		repository.createUser(expectedUser);
 		System.out.println("#########################>User inserted into database<#########################");
-		User actualUser = repository.getUserById("23459");
+		User actualUser = repository.findByUsername("vgeorga");
 		assertEquals(expectedUser.getUsername(), actualUser.getUsername());
 	}
 	
@@ -52,7 +69,11 @@ public class UserTest {
 	@Test
 	public void testRemoveUser(){
 		//delete user
-		repository.removeUser("23459");
+		User expected = new User("Bill","Preloudios","null@null.com","deleteUser","pass123",0.0, new ArrayList<Reservation>());
+		repository.insert(expected);
+		repository.removeUser(expected.getId());
+		User actual = repository.findByUsername("deleteUser");
+		assertNull(actual);
 	
 	}
 	
