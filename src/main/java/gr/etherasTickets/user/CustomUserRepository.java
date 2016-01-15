@@ -7,6 +7,7 @@ public interface CustomUserRepository {
     public User createUser(String id, String firstname, String lastname, String email, String username, String password, double balance,List<Reservation> reservations);
     public String userLogin(String username, String password);
     public void removeUser(String id);
+    public void updateUser(String id, String firstname, String lastname, String email, String username, String password);
 
 
 }
