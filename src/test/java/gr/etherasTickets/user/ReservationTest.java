@@ -1,8 +1,8 @@
 package gr.etherasTickets.user;
 
 import static org.junit.Assert.assertEquals;
-
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Date;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,25 +11,39 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
+
+
 import gr.etherasTickets.EtherasTicketsApplication;
+import gr.etherasTickets.exceptions.BadArguments;
+import gr.etherasTickets.exceptions.NotFound;
 import gr.etherasTickets.flight.Flight;
-import gr.etherasTickets.flight.Seat;
+import gr.etherasTickets.flight.FlightRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = EtherasTicketsApplication.class, loader = AnnotationConfigContextLoader.class)
 
+
 public class ReservationTest {
+	
 	
 	@Autowired 
 	private UserRepository usersRepository;
 	private User showReservationsUser;
 	private User afterInsertUser;
 	
+	@Autowired
+	private FlightRepository flightRepository;
+	
+	
+	
 	@Before
 	public void SetUp(){
+		
+	
 		usersRepository.deleteAll();
 		System.out.println(usersRepository);
 		usersRepository.save(new User("test" , "testopoulos" , "testopoulos@test.com" , "test372" , "1234" , 0));
+
 		
 	}
 	
@@ -38,6 +52,7 @@ public class ReservationTest {
 	public void addReservationTest(){
 		
 	}
+<<<<<<< HEAD
 	*/
 	@Test
 	public void showReservationTest(){
@@ -49,4 +64,15 @@ public class ReservationTest {
 		usersRepository.showUserReservations(afterInsertUser.getId());
 		assertEquals(showReservationsUser.getId(),afterInsertUser.getId());	
 	}
+
+	
+	@Test
+	public void removeReservationTest() throws BadArguments, NotFound{
+		
+		
+		
+		
+	}
+	
+	
 }

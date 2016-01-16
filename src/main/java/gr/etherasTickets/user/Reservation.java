@@ -24,16 +24,27 @@ public class Reservation {
         this.flight = flight;
         this.seats = seats;
         this.date = date;
+        
+    }
+    
+    public Reservation(String id,Flight flight, int numberOfSeats, Date date) {
+        this.flight = flight;
+        this.seats = seats;
+        this.date = date;
+        this.id=id;
+        this.numberOfSeats=numberOfSeats;
+                
+    }
+    
+    public Reservation(){
+    	
+    	
     }
     
     public Reservation(Flight flight, int numberOfSeats , Date date) {
         this.flight = flight;
         this.numberOfSeats = numberOfSeats;
         this.date = date;
-    }
-    
-    public Reservation(){
-    	
     }
     
    
