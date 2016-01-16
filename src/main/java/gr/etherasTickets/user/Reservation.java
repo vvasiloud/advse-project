@@ -2,6 +2,8 @@ package gr.etherasTickets.user;
 
 import gr.etherasTickets.flight.Flight;
 import gr.etherasTickets.flight.Seat;
+
+import gr.etherasTickets.exceptions.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.ArrayList;
@@ -21,6 +23,8 @@ public class Reservation {
         this.seats = seats;
         this.date = date;
     }
+    
+   
 
     public Date getDate() {
         return date;

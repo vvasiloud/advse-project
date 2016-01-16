@@ -1,11 +1,11 @@
 package gr.etherasTickets.exceptions;
 
-public class BadArguments extends Exception {
+import org.springframework.http.HttpStatus;
 
-	public BadArguments(String message) {
-		super(message);
-	}
-
+public class BadArguments extends RestException {
 	private static final long serialVersionUID = 1L;
-
+	
+	public BadArguments(String message) {
+		super(message , HttpStatus.BAD_REQUEST);
+	}
 }

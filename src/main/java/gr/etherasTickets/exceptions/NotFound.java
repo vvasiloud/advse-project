@@ -1,9 +1,11 @@
 package gr.etherasTickets.exceptions;
 
-public class NotFound extends Exception {
+import org.springframework.http.HttpStatus;
+
+public class NotFound extends RestException {
 	private static final long serialVersionUID = 1L;
 	
 	public NotFound(String message) {
-		super(message);
+		super(message , HttpStatus.NOT_FOUND);
 	}
 }
