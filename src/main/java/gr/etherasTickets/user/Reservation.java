@@ -19,10 +19,11 @@ public class Reservation {
     private Date date;
     private String id;
 
-    public Reservation(Flight flight, List<Seat> seats, Date date) {
+    public Reservation(String id,Flight flight, List<Seat> seats, Date date) {
         this.flight = flight;
         this.seats = seats;
         this.date = date;
+        this.id=id;
     }
     
    
