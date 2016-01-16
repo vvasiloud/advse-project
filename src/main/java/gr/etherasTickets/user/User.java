@@ -95,4 +95,13 @@ public class User {
     public void setReservations(List<Reservation> reservations) {
         this.reservations = reservations;
     }
+    
+    public void changeUserData(User otherUser){
+    	if(otherUser.getFirstName()!= null)this.setFirstName(otherUser.getFirstName());
+    	if(otherUser.getLastName()!= null)this.setLastName(otherUser.getLastName());
+    	if(otherUser.getEmail()!= null)this.setEmail(otherUser.getEmail());
+    	if(otherUser.getUsername()!= null)this.setUsername(otherUser.getUsername());
+    	if(otherUser.getPassword()!= null)this.setPassword(otherUser.getPassword());
+    	
+    }
 }

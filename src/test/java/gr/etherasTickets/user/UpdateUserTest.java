@@ -37,7 +37,8 @@ public class UpdateUserTest {
 		System.out.println(beforeUpdateUser.getUsername());
 		System.out.println(beforeUpdateUser.getPassword());
 		System.out.println("*********************************");
-		repository.updateUser(beforeUpdateUser.getId(), "Nikos", "Samaras", "newmail@tmail.com", "nikosam", "newpass345"); //update user
+		updatedUser = new User("Nikos", "Samaras", "newmail@tmail.com", "nikosam", "newpass345",0.0, new ArrayList<Reservation>());
+		repository.updateUser(beforeUpdateUser.getId(), updatedUser); //update user
 		updatedUser=repository.getUserById(beforeUpdateUser.getId());
 		System.out.println("*********************************");
 		System.out.println("AFTER UPDATE");

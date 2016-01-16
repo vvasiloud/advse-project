@@ -54,9 +54,16 @@ public class UserController {
         repository.removeUser(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+    
+    @RequestMapping(path = "/{id}" , method = RequestMethod.PUT)
+    public ResponseEntity<User> updateUser(@PathVariable String id, @RequestBody User user){
 
 
-
-
-
+        repository.updateUser(id, user);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+    
+    
+    
+    
 }

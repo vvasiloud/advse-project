@@ -47,14 +47,9 @@ public class UserRepositoryImpl implements CustomUserRepository {
 	}
 
 	@Override
-	public void updateUser(String id, String firstname, String lastname, String email, String username,
-			String password) {
+	public void updateUser(String id, User newUser) {
 		User user = operations.findOne(new Query(Criteria.where("_id").is(id)), User.class, "users");
-		user.setFirstName(firstname);
-		user.setLastName(lastname);
-		user.setEmail(email);
-		user.setUsername(username);
-		user.setPassword(password);
+		user.changeUserData(newUser);
 		operations.save(user);
 
 		
