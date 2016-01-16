@@ -41,6 +41,12 @@ public class Reservation {
     	
     }
     
+    public Reservation(Flight flight, int numberOfSeats , Date date) {
+        this.flight = flight;
+        this.numberOfSeats = numberOfSeats;
+        this.date = date;
+    }
+    
    
     public String getId(){
     	

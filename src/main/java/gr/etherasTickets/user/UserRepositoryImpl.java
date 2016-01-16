@@ -50,9 +50,13 @@ public class UserRepositoryImpl implements CustomUserRepository {
 	public void updateUser(String id, User newUser) {
 		User user = operations.findOne(new Query(Criteria.where("_id").is(id)), User.class, "users");
 		user.changeUserData(newUser);
-		operations.save(user);
-
-		
+		operations.save(user);	
+	}
+	
+	public void showUserReservations(String id){
+		User user = operations.findOne(new Query(Criteria.where("_id").is(id)), User.class, "users");
+		System.out.println("RESERVATIONS for User "+ user.getFirstName()+" "+user.getLastName()+":" +"\n");
+		user.showReservations();
 	}
     
   

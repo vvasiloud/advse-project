@@ -3,6 +3,8 @@ package gr.etherasTickets.user;
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
+
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,10 @@ public class UpdateUserTest {
 	private User beforeUpdateUser;
 	private User updatedUser;
  
+	@Before
+	public void SetUp(){
+		repository.deleteAll();
+	}
     
 	@Test
     public void testUpdateUser() {
