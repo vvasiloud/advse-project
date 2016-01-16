@@ -44,9 +44,10 @@ public class ReservationController {
 
 		flight.setAvailableSeats(flight.getAvailableSeats() - reservationBody.getNumOfSeats());
 		user.setBalance(user.getBalance() - flight.getPrice());
-
+		
 		user.addReservation(new Reservation(flight, new ArrayList<Seat>(), new Date()));	
-
+		//Todo (new Reservation(flight, reservationBody.getNumOfSeats(), new Date()) 
+		
 		userRepository.save(user);
 
 		String reservationId = "getreservationId" ;
