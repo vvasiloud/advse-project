@@ -45,6 +45,20 @@ public class UserRepositoryImpl implements CustomUserRepository {
 		operations.findAndRemove(new Query(Criteria.where("_id").is(id)), User.class, "users");
 			
 	}
+
+	@Override
+	public void updateUser(String id, String firstname, String lastname, String email, String username,
+			String password) {
+		User user = operations.findOne(new Query(Criteria.where("_id").is(id)), User.class, "users");
+		user.setFirstName(firstname);
+		user.setLastName(lastname);
+		user.setEmail(email);
+		user.setUsername(username);
+		user.setPassword(password);
+		operations.save(user);
+
+		
+	}
     
   
 }
