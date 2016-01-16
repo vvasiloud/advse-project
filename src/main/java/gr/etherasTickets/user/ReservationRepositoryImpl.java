@@ -2,6 +2,8 @@ package gr.etherasTickets.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.util.Assert;
 
 public class ReservationRepositoryImpl implements CustomReservationRepository {
@@ -14,4 +16,9 @@ public class ReservationRepositoryImpl implements CustomReservationRepository {
 	        this.operations = operations;
 	    }
 
+	    public void removeReservation (String reservationId){
+	    	
+	    	
+	    	operations.findAndRemove(new Query(Criteria.where("_id").is(reservationId)), Reservation.class);
+	    }
 }
