@@ -35,6 +35,34 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   // Each state's controller can be found in controllers.js
   $stateProvider
 
+ .state('auth', {
+    url: '/auth',
+    templateUrl: 'templates/auth.html',
+    controller: 'AuthController'
+    // onEnter:function($state, $localstorage){
+    //   if($localstorage.get('token')){
+    //     $state.go("tab.order");
+    //   }
+    // }
+  })
+
+  .state('login', {
+    url: '/auth/login',
+
+        templateUrl: 'templates/login.html',
+        controller: 'LoginController'
+    
+  })
+
+  .state('register', {
+    url: '/auth/register',
+
+    templateUrl: 'templates/register.html',
+    controller: 'RegisterController'
+
+  })
+
+
   // setup an abstract state for the tabs directive
     .state('tab', {
     url: '/tab',
@@ -44,12 +72,32 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
   // Each tab has its own nav history stack:
 
-  .state('tab.flight', {
-    url: '/flight',
+  .state('tab.search', {
+    url: '/search',
     views: {
-      'tab-flight': {
-        templateUrl: 'templates/tab-flight.html',
-        controller: 'FlightController'
+      'tab-search': {
+        templateUrl: 'templates/tab-search.html',
+        controller: 'SearchController'
+      }
+    }
+  })
+
+  .state('tab.results', {
+    url: '/search/results',
+    views: {
+      'tab-search': {
+        templateUrl: 'templates/results.html',
+        controller: 'ResultController'
+      }
+    }
+  })
+
+  .state('tab.reserve', {
+    url: '/search/results/reserve/:id',
+    views: {
+      'tab-search': {
+        templateUrl: 'templates/reserve.html',
+        controller: 'ReserveController'
       }
     }
   })
@@ -65,6 +113,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/flight');
+  $urlRouterProvider.otherwise('/tab/search');
 
 });

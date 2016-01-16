@@ -1,0 +1,50 @@
+[
+  {
+    "id": "5693fa637200bc1ddfd23af7",
+    "date": 1452538467296,
+    "to": "Athens",
+    "from": "Thessaloniki",
+    "price": 50,
+    "availableSeats": 60
+  },
+  {
+    "id": "5693fa637200bc1ddfd23af8",
+    "date": 1452538467302,
+    "to": "Athens",
+    "from": "Rhodes",
+    "price": 50,
+    "availableSeats": 40
+  },
+  {
+    "id": "5693fa637200bc1ddfd23af9",
+    "date": 1452538467308,
+    "to": "Athens",
+    "from": "Ioannina",
+    "price": 90,
+    "availableSeats": 60
+  },
+  {
+    "id": "5693fa637200bc1ddfd23afa",
+    "date": 1452538467315,
+    "to": "Ioannina",
+    "from": "Thessaloniki",
+    "price": 30,
+    "availableSeats": 60
+  },
+  {
+    "id": "5693fa637200bc1ddfd23afb",
+    "date": 1452538467323,
+    "to": "Thessaloniki",
+    "from": "Athens",
+    "price": 40,
+    "availableSeats": 60
+  },
+  {
+    "id": "5693fa637200bc1ddfd23afc",
+    "date": 1452538467332,
+    "to": "Heraklion",
+    "from": "Thessaloniki",
+    "price": 100,
+    "availableSeats": 60
+  }
+]
