@@ -36,6 +36,10 @@ public class User {
         this.reservations = reservations;
     }
     
+    public User(){
+    	
+    }
+    
     public void addReservation(Reservation newReservation){
     	reservations.add(newReservation);
     }
