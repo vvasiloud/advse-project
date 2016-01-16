@@ -34,7 +34,7 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<String> createUser(@RequestBody User user) throws Exception{
-        User users = repository.findByUsername(user.getFirstName());
+        User users = repository.findByUsername(user.getUsername());
         if(users == null){
             throw new Exception("User exists");
         }
