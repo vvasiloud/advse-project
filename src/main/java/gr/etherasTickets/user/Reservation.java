@@ -1,9 +1,9 @@
 package gr.etherasTickets.user;
 
-import gr.etherasTickets.flight.Flight;
-import gr.etherasTickets.flight.Seat;
-
 import gr.etherasTickets.exceptions.*;
+import gr.etherasTickets.logic.models.Flight;
+import gr.etherasTickets.logic.models.Seat;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.ArrayList;

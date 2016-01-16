@@ -17,6 +17,6 @@ public class RestException extends Exception {
 	}
 	
 	public ResponseEntity<String> getResponseEntity(){
-		return new ResponseEntity<String>(String.format("{\"message\":%s}", getMessage()),httpStatus);
+		return new ResponseEntity<String>(getMessage(),httpStatus);
 	}
 }

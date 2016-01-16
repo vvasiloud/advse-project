@@ -3,6 +3,8 @@ package gr.etherasTickets.flight;
 import java.util.List;
 
 import gr.etherasTickets.exceptions.*;
+import gr.etherasTickets.logic.models.Flight;
+import gr.etherasTickets.logic.models.Seat;
 
 public interface CustomFlightRepository {
 

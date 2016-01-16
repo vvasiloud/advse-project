@@ -1,4 +1,4 @@
-package gr.etherasTickets.flight;
+package gr.etherasTickets.logic.models;
 
 import java.util.List;
 import java.util.ArrayList;
