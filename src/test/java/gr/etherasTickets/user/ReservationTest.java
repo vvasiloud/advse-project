@@ -38,6 +38,8 @@ public class ReservationTest {
 	@Before
 	public void SetUp(){
 		
+		flightRepository.deleteAll();
+		flightRepository.save(new Flight("Thessaloniki", "Athens", 50, 60, new Date()));
 	
 		usersRepository.deleteAll();
 		System.out.println(usersRepository);
