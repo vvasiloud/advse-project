@@ -1,5 +1,7 @@
 package gr.etherasTickets.user;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -7,7 +9,8 @@ import org.springframework.web.bind.annotation.*;
 public class ReservationController {
 
 	@RequestMapping(method = RequestMethod.POST)
-	public void addReservation(@RequestParam String userid , @RequestBody Reservation newReservation){
+	public ResponseEntity<String> addReservation(@RequestParam String userid , @RequestBody Reservation newReservation){
 		
+		return new ResponseEntity<String>("" , HttpStatus.OK);
 	}
 }
