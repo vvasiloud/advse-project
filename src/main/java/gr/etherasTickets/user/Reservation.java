@@ -25,15 +25,16 @@ public class Reservation {
         this.flight = flight;
         this.seats = seats;
         this.date = date;
+        this.cancel=false;
         
     }
     
-    public Reservation(String id,Flight flight, int numberOfSeats, Date date, boolean cancel) {
+    public Reservation(String id,Flight flight, int numberOfSeats, Date date) {
         this.flight = flight;
         this.date = date;
         this.id=id;
         this.numberOfSeats=numberOfSeats;
-        this.cancel=cancel;
+        this.cancel=false;
                 
     }
     
@@ -46,6 +47,7 @@ public class Reservation {
         this.flight = flight;
         this.numberOfSeats = numberOfSeats;
         this.date = date;
+        this.cancel=false;
     }
     
    
