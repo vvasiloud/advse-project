@@ -56,7 +56,7 @@ public class ReservationController {
 	}
 
 
-	@RequestMapping(path = "/{reservationId}" , method = RequestMethod.DELETE)
+	@RequestMapping(path = "/{reservationId}" , method = RequestMethod.PUT)
 	public ResponseEntity<String> removeReservation(@RequestParam String userid, @RequestParam String reservationId )throws RestException{
 
 		User user = userRepository.getUserById(userid);
