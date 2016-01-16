@@ -22,6 +22,10 @@ public class User {
     private double balance;
     private List<Reservation> reservations = new ArrayList<>();
 
+    public User(String firstName, String lastName,String email, String username, String password,double balance) {
+    	this(firstName , lastName , email , username , password , balance ,new ArrayList<Reservation>());
+    }
+    
     public User(String firstName, String lastName,String email, String username, String password,double balance,List<Reservation> reservations) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -30,6 +34,10 @@ public class User {
         this.password = password;
         this.balance = balance;
         this.reservations = reservations;
+    }
+    
+    public void addReservation(Reservation newReservation){
+    	reservations.add(newReservation);
     }
 
     public String getId() {

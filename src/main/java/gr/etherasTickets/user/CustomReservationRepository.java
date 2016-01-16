@@ -1,5 +1,6 @@
 package gr.etherasTickets.user;
 
-public interface CustomReservationRepository {
+import gr.etherasTickets.exceptions.RestException;
 
+public interface CustomReservationRepository {
 }

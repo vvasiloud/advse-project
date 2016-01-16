@@ -2,6 +2,8 @@ package gr.etherasTickets.user;
 
 import gr.etherasTickets.flight.Flight;
 import gr.etherasTickets.flight.Seat;
+
+import gr.etherasTickets.exceptions.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.ArrayList;
@@ -15,13 +17,19 @@ public class Reservation {
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private Date date;
+    private String id;
 
     public Reservation(Flight flight, List<Seat> seats, Date date) {
         this.flight = flight;
         this.seats = seats;
         this.date = date;
     }
-
+    
+   
+    public String getId(){
+    	
+    	return id;
+    }
     public Date getDate() {
         return date;
     }

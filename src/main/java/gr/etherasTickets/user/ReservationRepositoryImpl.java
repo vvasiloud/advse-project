@@ -6,6 +6,9 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.util.Assert;
 
+import gr.etherasTickets.exceptions.NotFound;
+import gr.etherasTickets.exceptions.RestException;
+
 public class ReservationRepositoryImpl implements CustomReservationRepository {
 
 	 private final MongoOperations operations; //Class for communicating with mongoDB
@@ -16,9 +19,5 @@ public class ReservationRepositoryImpl implements CustomReservationRepository {
 	        this.operations = operations;
 	    }
 
-	    public void removeReservation (String reservationId){
-	    	
-	    	
-	    	operations.findAndRemove(new Query(Criteria.where("_id").is(reservationId)), Reservation.class);
-	    }
+
 }

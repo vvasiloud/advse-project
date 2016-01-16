@@ -4,6 +4,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface ReservationRepository extends MongoRepository<Reservation, String>, CustomReservationRepository {
 
-	void removeReservation(String reservationId);
 
 }
