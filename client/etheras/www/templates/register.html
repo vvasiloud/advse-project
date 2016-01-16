@@ -1,0 +1,43 @@
+ <ion-view view-title="Etheras Tickets">
+<ion-content class="padding background register">
+
+  <form name="loginForm" novalidate='' ng-submit="login(user)">
+  <div ng-if="error" class="error-message"> {{ error }}</div>
+    <div class="list auth-list">
+      <label class="item item-input">
+        <span class="input-label">Email</span>
+        <input type="text" ng-model="user.email" required>
+      </label>
+
+      <label class="item item-input">
+        <span class="input-label">First Name</span>
+        <input type="text" ng-model="user.firstName" required>
+      </label>
+
+      <label class="item item-input">
+        <span class="input-label">Last Name</span>
+        <input type="text" ng-model="user.lastName" required>
+      </label>
+
+      <label class="item item-input">
+        <span class="input-label">Username</span>
+        <input type="text" ng-model="user.username" required>
+      </label>
+     
+
+      <label class="item item-input">
+        <span class="input-label">Password</span>
+        <input type="password" ng-model="user.password" required ng-minlength="6">
+      </label>
+    </div>
+
+
+    <button class="button button-block button-complete" ng-disabled="loginForm.$invalid" type="submit">
+      Register
+    </button>
+
+
+  </form>
+  
+</ion-content>
+</ion-view>

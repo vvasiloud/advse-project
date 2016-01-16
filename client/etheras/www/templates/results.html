@@ -1,0 +1,44 @@
+<ion-view view-title="Flights">
+  <ion-content class="padding background2">
+  		
+	<div class="results">
+		<div class="list">
+			<div class="item" ng-repeat="flight in flights">
+				  <div class="item-title">
+				    <h2>{{flight.from}} -> {{flight.to}}</h2>
+				    <p>{{flight.date | date:'MMMM yyyy, dd - HH:mm'}}</p>
+				  </div>
+
+				  <div class="item-body">
+				  	<div class="row">
+				  		<div class="col col-33">
+				  			<p>Available seats</p>
+				  		</div>
+				  		<div class="col col-67">
+				  			<p> {{flight.availableSeats}}</p>
+				  		</div>
+				  	</div>
+				  	<div class="row">
+				  		<div class="col col-33">
+				  			<p>Cost</p>
+				  		</div>
+				  		<div class="col col-67">
+				  			<p class="bold">€ {{ flight.price }}</p>
+				  		</div>
+				  	</div> 
+				  </div>
+
+				  <div class="reserve">
+				  	 <form name="seatsForm" novalidate='' ng-submit="reserve(flight)">
+				  	   <label class="item item-input">
+				        <span class="input-label">Seats</span>
+				        <input type="number" ng-model="flight.seats" required>
+				      </label>
+				  	<button class="button button-icon" ng-click="reserve(flight.id)">Reserve</button>
+				  </div>
+
+			</div>
+		</div>
+	</div>
+  </ion-content>
+</ion-view>

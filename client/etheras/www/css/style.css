@@ -1,49 +1,60 @@
 /* Empty. Add your own CSS if you like */
 
-.background {
-	background: url("../img/background.jpg") no-repeat center center fixed;
-	-webkit-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
 
+
+
+
+
+
+
+.auth{
+	text-align: center;
+	padding-top: 90%;
 }
 
-.user {
+.auth .button {
+	background-color: rgba(129, 168, 179, 0.52);
+	color:  #0082a5;
+	font-size: 25px;
+	padding: 10px;
+}
+
+.or{
+	color: #0082a5;
+	font-size:25px;
+}
+
+.auth-list {
+	padding-top: 90%;
+}
+
+.auth-list .item {
+	margin-top: 20px;
+	background-color: rgba(129, 168, 179, 0.52);
+	border: none;
+	color:  #0082a5;
+}
+
+.auth-list .input-label {
+	color: #013746;
+}
+
+.auth-list input{
+	color: #013746;
+}
+
+.login .button{
+	background-color: #417D9A;
+	color:  #E5F6FB;
+}
+
+.register .button{
+	background-color: #417D9A;
+	color:  #E5F6FB;
+	margin-top: 50px; 
+}
+
+.register .auth-list {
 	padding-top: 10px;
-	text-align: center;
-}
-.user h1{
-	color: #013746;
-	font-size: 30px;
 }
 
-.user h3 {
-	color: #0082a5 ;
-}
-
-.reservations{
-	padding-top: 40px;
-}
-
-.reservations h3 {
-	text-align: center;
-	color: #013746;
-	font-size: 20px;
-}
-
-.item-title {
-	background: rgba(63, 155, 199, 0.68);
-}
-
-.item-title h2{
-	font-size: 19px;
-}
-
-.item-body {
-    background: rgba(223, 228, 230, 0.89);
-}
-
-.reservations .bold {
-	color: #013746;
-	font-size: 16px;
-}

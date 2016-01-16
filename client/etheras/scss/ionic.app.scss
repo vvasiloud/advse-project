@@ -1,19 +1,157 @@
 /*
 To customize the look and feel of Ionic, you can override the variables
 in ionic's _variables.scss file.
-
-For example, you might change some of the default colors:
-
-$light:                           #fff !default;
-$stable:                          #f8f8f8 !default;
-$positive:                        #387ef5 !default;
-$calm:                            #11c1f3 !default;
-$balanced:                        #33cd5f !default;
-$energized:                       #ffc900 !default;
-$assertive:                       #ef473a !default;
-$royal:                           #886aea !default;
-$dark:                            #444 !default;
 */
+@import "scss/variables.scss";
+
+
+.background {
+	background: url("../img/background.jpg") no-repeat center center fixed;
+	-webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+
+}
+
+.background2 {
+	background-color: $light;
+}
+
+.bar-positive, .tabs-positive>.tabs {
+	background-color: #417D9A !important;
+	border-color:#417D9A !important; 
+
+}
+
+
+
+
+// USER-----------------------------------------
+
+.user {
+	padding-top: 10px;
+	text-align: center;
+
+	h1 {
+		color: $dark;
+		font-size: 30px;
+	}
+
+	h3 {
+		color: $light-blue;
+	}
+}
+
+// RESERVSTIONS ----------------------------------------
+
+.reservations{
+	padding-top: 40px;
+
+	 h3 {
+		text-align: center;
+		color: #013746;
+		font-size: 20px;
+	}
+
+
+	.item-title {
+		background: rgba(63, 155, 199, 0.68);
+	}
+
+	.item-title h2{
+		font-size: 19px;
+	}
+
+	.item-body {
+	    background: rgba(223, 228, 230, 0.89);
+	}
+}
+
+
+// Search Form ---------------------------------------------------------
+
+.search-list {
+	.item {
+		margin-bottom: 5px;
+		background: $positive;
+		border: none;
+	}
+
+	 input[type="text"], input[type="number"]{
+		color: $light;
+		font-size: 20px;
+	}
+
+	.input-label{
+		color: $light;
+		font-size: 20px;
+	}
+
+	button {
+		background-color:$positive;
+		color: #D0DDE0;
+		font-size: 20px;
+	}
+
+}
+.logo {
+	width: 100%;
+	margin-top : 15px;
+}
+
+// RESULTS -------------------------------------------------------
+
+
+.results {
+
+	.list .item {
+		padding: 0;
+		margin-bottom: 15px;
+
+		.item-title{
+			background: $positive;
+			text-align: center;
+			padding: 10px;
+			h2{
+				color: $light;
+				font-size: 19px;
+			}
+			p{
+				color: $light;
+			}
+		}
+		
+		.item-body{
+			padding: 0;
+			background-color: rgb(244, 252, 255);
+
+			border-bottom: 2px dotted $positive;
+		}
+
+		.reserve {
+			text-align: center;
+			background-color: rgb(244, 252, 255);
+			height: 70px;
+			.button {
+				margin-top: 10px;
+				margin-right: 10px;
+				background-color: $positive;
+				color: $light;
+				float: right;
+
+				.icon{
+					font-size: 5px;
+				}
+			}
+		}
+		
+	}
+
+}
+
+
+// ----------------------------------------------------------------------------------------
+
 
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;

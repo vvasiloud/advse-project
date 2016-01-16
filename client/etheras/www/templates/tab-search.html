@@ -1,0 +1,39 @@
+<ion-view view-title="Search Flights">
+  <ion-content class="padding background2">
+
+
+  <form name="searchForm" novalidate='' ng-submit="search(flight)" class="searchForm">
+  
+    <div class="list search-list">
+      <label class="item item-input">
+        <span class="input-label">From</span>
+        <input type="text" ng-model="flight.from" required>
+      </label>
+
+      <label class="item item-input">
+        <span class="input-label">To</span>
+        <input type="text" ng-model="flight.to" required>
+      </label>
+
+      <label class="item item-input">
+        <span class="input-label">Max €</span>
+        <input type="number" ng-model="flight.seats" required>
+      </label>
+     
+      <label class="item item-input">
+        <span class="input-label">Min €</span>
+        <input type="number" ng-model="flight.min" required>
+      </label>
+
+    <button class="button button-block button-complete" ng-disabled="searchForm.$invalid" type="submit">
+      Search
+    </button>
+
+
+  </form>
+
+  
+  	<img ng-src = "img/logo.png" class="logo">
+  
+  </ion-content>
+</ion-view>
