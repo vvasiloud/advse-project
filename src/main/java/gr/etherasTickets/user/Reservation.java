@@ -18,11 +18,22 @@ public class Reservation {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private Date date;
     private String id;
+    private int numberOfSeats;
 
     public Reservation(Flight flight, List<Seat> seats, Date date) {
         this.flight = flight;
         this.seats = seats;
         this.date = date;
+    }
+    
+    public Reservation(Flight flight, int numberOfSeats , Date date) {
+        this.flight = flight;
+        this.numberOfSeats = numberOfSeats;
+        this.date = date;
+    }
+    
+    public Reservation(){
+    	
     }
     
    
