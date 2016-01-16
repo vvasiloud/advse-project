@@ -65,7 +65,8 @@ public class ReservationController {
 		for (Reservation r : user.getReservations())
 			if (r.getId().equals(reservationId)){
 				
-				user.getReservations().remove(r);
+				r.setCancel(true);
+				
 				break;
 			}
 		
