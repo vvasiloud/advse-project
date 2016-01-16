@@ -5,6 +5,7 @@ import gr.etherasTickets.flight.*;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -74,8 +75,19 @@ public class ReservationController {
 		return new ResponseEntity<String>(HttpStatus.OK);
 		
 	}
+	
+	@RequestMapping(method = RequestMethod.GET)
+	public ResponseEntity<List<Reservation>> getReservations(@RequestParam String userid) throws RestException{
+		User user = userRepository.getUserById(userid);
+		if(user == null)
+			throw new BadArguments("User with id "+userid+" does not exist");
+		
+		if(user.getReservations().isEmpty())
+			throw new NotFound("User with id "+ user.getId()+ "Doesn't have reservations");
+		
+		return new ResponseEntity<List<Reservation>>(user.getReservations(),HttpStatus.OK);
 
 
 	//Todo create Seat list my flight
-
+	}
 }
