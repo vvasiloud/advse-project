@@ -108,15 +108,6 @@ public class User {
         this.reservations = reservations;
     }
     
-    public void showReservations(){
-    	for (Reservation r : reservations){
-    		System.out.println("FROM : " + r.getFlight().getFrom());
-    		System.out.println("TO : " + r.getFlight().getTo());
-    		System.out.println("DATE : " + r.getFlight().getDate());
-    		System.out.println("\n");
-    	}
-    }
-    
     public void changeUserData(User otherUser){
     	if(otherUser.getFirstName()!= null)this.setFirstName(otherUser.getFirstName());
     	if(otherUser.getLastName()!= null)this.setLastName(otherUser.getLastName());
