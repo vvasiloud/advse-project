@@ -1,7 +1,10 @@
-package gr.etherasTickets.user;
+package gr.etherasTickets.rest.controllers;
 
+import gr.etherasTickets.data.repositories.UserRepository;
 import gr.etherasTickets.dto.AuthDto;
 import gr.etherasTickets.exceptions.RestException;
+import gr.etherasTickets.logic.models.User;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

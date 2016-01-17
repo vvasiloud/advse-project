@@ -1,4 +1,4 @@
-package gr.etherasTickets.flight;
+package gr.etherasTickets.data.repositories;
 
 
 import org.springframework.data.mongodb.repository.MongoRepository;

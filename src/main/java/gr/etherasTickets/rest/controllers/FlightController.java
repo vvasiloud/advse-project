@@ -10,12 +10,11 @@ import org.springframework.web.bind.annotation.*;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import gr.etherasTickets.View;
+import gr.etherasTickets.data.repositories.FlightRepository;
 import gr.etherasTickets.exceptions.BadArguments;
 import gr.etherasTickets.exceptions.NotFound;
 import gr.etherasTickets.exceptions.RestException;
-import gr.etherasTickets.flight.FlightRepository;
 import gr.etherasTickets.logic.models.Flight;
-import gr.etherasTickets.logic.models.Seat;
 
 
 @RestController

@@ -1,4 +1,4 @@
-package gr.etherasTickets.flight;
+package gr.etherasTickets.data.repositories.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,9 +9,9 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.util.Assert;
 
+import gr.etherasTickets.data.repositories.CustomFlightRepository;
 import gr.etherasTickets.exceptions.*;
 import gr.etherasTickets.logic.models.Flight;
-import gr.etherasTickets.logic.models.Seat;
 
 public class FlightRepositoryImpl implements CustomFlightRepository  {
 	

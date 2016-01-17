@@ -55,22 +55,6 @@ public class Flight {
 	public String getId(){
 		return id;
 	}
-
-	public static List<Seat> createSeats(int maxSeats , int seatRowWidth){
-		List<Seat> seats = new ArrayList<Seat>();
-		char seatLetter = 'A';
-		int seatnumder = 1;
-		for(int i = 0 ; i < maxSeats ; i++){
-			seats.add(new Seat(String.format("%c%d", seatLetter , seatnumder)));
-			
-			seatnumder++;
-			if(seatnumder > seatRowWidth){
-				seatnumder = 1;
-				seatLetter++;
-			}	
-		}
-		return seats;
-	}
 	
 	public void addSeats(int numSeats) throws LogicError{
 		if(numSeats + availableSeats > maxSeats)

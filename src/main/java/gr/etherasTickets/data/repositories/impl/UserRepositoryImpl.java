@@ -1,4 +1,4 @@
-package gr.etherasTickets.user;
+package gr.etherasTickets.data.repositories.impl;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,8 +7,11 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.util.Assert;
 
+import gr.etherasTickets.data.repositories.CustomUserRepository;
 import gr.etherasTickets.exceptions.NotFound;
 import gr.etherasTickets.exceptions.RestException;
+import gr.etherasTickets.logic.models.Reservation;
+import gr.etherasTickets.logic.models.User;
 
 import java.util.ArrayList;
 

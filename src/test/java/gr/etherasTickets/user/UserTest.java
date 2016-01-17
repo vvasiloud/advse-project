@@ -14,7 +14,10 @@ import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
 
 import gr.etherasTickets.EtherasTicketsApplication;
+import gr.etherasTickets.data.repositories.UserRepository;
 import gr.etherasTickets.exceptions.RestException;
+import gr.etherasTickets.logic.models.Reservation;
+import gr.etherasTickets.logic.models.User;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = EtherasTicketsApplication.class, loader = AnnotationConfigContextLoader.class)

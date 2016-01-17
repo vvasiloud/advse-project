@@ -1,7 +1,7 @@
 package gr.etherasTickets.rest.resources;
 
 import gr.etherasTickets.exceptions.*;
-import gr.etherasTickets.user.Reservation;
+import gr.etherasTickets.logic.models.Reservation;
 
 public class ReservationResource {
 	private String flightID;

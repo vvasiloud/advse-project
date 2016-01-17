@@ -1,6 +1,7 @@
-package gr.etherasTickets.user;
+package gr.etherasTickets.data.repositories;
 
 import gr.etherasTickets.exceptions.RestException;
+import gr.etherasTickets.logic.models.User;
 
 public interface CustomUserRepository {
     public User getUserById(String id) throws RestException;

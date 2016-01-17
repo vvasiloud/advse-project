@@ -21,10 +21,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 
 import gr.etherasTickets.EtherasTicketsApplication;
-import gr.etherasTickets.flight.FlightRepository;
+import gr.etherasTickets.data.repositories.FlightRepository;
+import gr.etherasTickets.data.repositories.UserRepository;
 import gr.etherasTickets.logic.models.Flight;
-import gr.etherasTickets.user.User;
-import gr.etherasTickets.user.UserRepository;
+import gr.etherasTickets.logic.models.User;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = EtherasTicketsApplication.class)
