@@ -19,24 +19,15 @@ public class Reservation {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private Date date;
     private String id;
-    private int numberOfSeats;
+    private int numOfSeats;
     private boolean cancel;
-
-    public Reservation(Flight flight, List<Seat> seats, Date date) {
-        this.flight = flight;
-        this.seats = seats;
-        this.date = date;
-        this.cancel=false;
-        
-    }
     
     public Reservation(String id,Flight flight, int numberOfSeats, Date date) {
         this.flight = flight;
         this.date = date;
         this.id=id;
-        this.numberOfSeats=numberOfSeats;
+        this.numOfSeats=numberOfSeats;
         this.cancel=false;
-                
     }
     
     public Reservation(){}
@@ -47,7 +38,7 @@ public class Reservation {
     
     
     public int getCost(){
-    	return flight.getPrice() * numberOfSeats;
+    	return flight.getPrice() * numOfSeats;
     }
    
     public String getId(){
@@ -70,14 +61,6 @@ public class Reservation {
         this.flight = flight;
     }
 
-    public List<Seat> getSeats() {
-        return seats;
-    }
-
-    public void setSeats(List<Seat> seats) {
-        this.seats = seats;
-    }
-    
     public void setCancel(boolean cancel){
     	
     	this.cancel=cancel;
@@ -86,6 +69,14 @@ public class Reservation {
     
     	return cancel;
     }
+
+	public int getNumOfSeats() {
+		return numOfSeats;
+	}
+
+	public void setNumOfSeats(int numberOfSeats) {
+		this.numOfSeats = numberOfSeats;
+	}
     
 
 }

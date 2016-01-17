@@ -5,6 +5,7 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import gr.etherasTickets.exceptions.LogicError;
+import gr.etherasTickets.exceptions.NotFound;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +43,10 @@ public class User {
     	
     }
     
+    public void addBalance(int amount){
+    	setBalance(getBalance() + amount);
+    }
+    
     public void removeBalance(int amount) throws LogicError{
     	if(getBalance() < amount)
 			throw new LogicError("User "+getUsername()+" does not have enough money!");
@@ -51,6 +56,14 @@ public class User {
     public void addReservation(Reservation newReservation){
     	reservations.add(newReservation);
     }
+    
+    public Reservation getReservation(String id) throws NotFound{
+    	for(Reservation r : reservations)
+    		if(r.getId().equals(id))
+    			return r;
+    	throw new NotFound("Reservation with id " + id + " does not exist!");
+    }
+    
 
     public String getId() {
         return id;

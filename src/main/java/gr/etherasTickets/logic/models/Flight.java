@@ -72,6 +72,12 @@ public class Flight {
 		return seats;
 	}
 	
+	public void addSeats(int numSeats) throws LogicError{
+		if(numSeats + availableSeats > maxSeats)
+			throw new LogicError("Flight with id "+ getId()+" does not have so many availables seats!");
+		setAvailableSeats(getAvailableSeats() + numSeats);
+	}
+	
 	public void removeSeats(int numSeats) throws LogicError{
 		if(numSeats > availableSeats)
 			throw new LogicError("Flight with id "+ getId()+" does not have availables seats!");

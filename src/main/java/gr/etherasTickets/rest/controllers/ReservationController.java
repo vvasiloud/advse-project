@@ -60,16 +60,13 @@ public class ReservationController {
 
 		for (Reservation r : user.getReservations())
 			if (r.getId().equals(reservationId)){
-				
 				r.setCancel(true);
-				
 				break;
 			}
 		
 		userRepository.save(user);
 		
 		return new ResponseEntity<String>(HttpStatus.OK);
-		
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)
@@ -80,5 +77,49 @@ public class ReservationController {
 			throw new NotFound("User with id "+ user.getId()+ "Doesn't have reservations");
 		
 		return new ResponseEntity<List<Reservation>>(user.getReservations(),HttpStatus.OK);
+	}
+	
+	@RequestMapping(path = "/{reservationId}" , method = RequestMethod.GET)
+	public ResponseEntity<Reservation> getReservation(
+			@PathVariable String userid , 
+			@PathVariable String reservationId  
+	) throws RestException{
+		User user = userRepository.getUserById(userid);
+		return new ResponseEntity<Reservation>(user.getReservation(reservationId),HttpStatus.OK);
+	}
+	
+	@RequestMapping(path = "/{reservationId}" , method = RequestMethod.PUT)
+	public ResponseEntity<String> updateReservation(
+			@PathVariable String userid , 
+			@PathVariable String reservationId , 
+			@RequestBody ReservationResource reservationResource
+	) throws RestException{
+		reservationResource.verifyForUpdate();
+		
+		User user = userRepository.getUserById(userid);
+		Reservation reservation = user.getReservation(reservationId);
+		Flight flight = reservation.getFlight();
+		
+		if(reservation.getNumOfSeats() == reservationResource.getNumOfSeats())
+			throw new BadArguments("Can not update the same numder of seats");
+		
+		if(reservation.getNumOfSeats() > reservationResource.getNumOfSeats()){
+			flight.addSeats(reservation.getNumOfSeats() - reservationResource.getNumOfSeats());
+		}else if(reservation.getNumOfSeats() < reservationResource.getNumOfSeats())
+			flight.removeSeats(reservationResource.getNumOfSeats() - reservation.getNumOfSeats());
+		
+		int oldCost = reservation.getCost();
+		reservation.setNumOfSeats(reservationResource.getNumOfSeats());
+		int newCost = reservation.getCost();
+		
+		if(oldCost > newCost)
+			user.addBalance(oldCost - newCost);
+		else if(newCost > oldCost)
+			user.removeBalance(newCost - oldCost);
+			
+		userRepository.save(user);
+		flightRepository.save(flight);
+		
+		return new ResponseEntity<String>(String.format("/users/%s/reservations/%s",userid , reservation.getId()) , HttpStatus.OK);
 	}
 }
