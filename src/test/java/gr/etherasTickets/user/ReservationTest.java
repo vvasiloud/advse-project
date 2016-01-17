@@ -30,9 +30,7 @@ public class ReservationTest {
 	private UserRepository usersRepository;
 	private User showReservationsUser;
 	private User afterInsertUser;
-	
-	private User removeReservationUser;
-	
+		
 	@Autowired
 	private FlightRepository flightRepository;
 	
@@ -73,8 +71,7 @@ public class ReservationTest {
 	@Test
 	public void removeReservationTest() throws BadArguments, NotFound{
 		
-		
-		
+	
 		
 		
 	}
