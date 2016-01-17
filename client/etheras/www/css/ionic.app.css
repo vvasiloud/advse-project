@@ -16,6 +16,10 @@ in ionic's _variables.scss file.
   background-color: #417D9A !important;
   border-color: #417D9A !important; }
 
+.error-message {
+  text-align: center;
+  color: red; }
+
 .user {
   padding-top: 10px;
   text-align: center; }
