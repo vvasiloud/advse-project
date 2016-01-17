@@ -23,6 +23,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import gr.etherasTickets.EtherasTicketsApplication;
 import gr.etherasTickets.flight.FlightRepository;
 import gr.etherasTickets.logic.models.Flight;
+import gr.etherasTickets.user.User;
+import gr.etherasTickets.user.UserRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = EtherasTicketsApplication.class)
@@ -37,6 +39,7 @@ public class FlightTest {
 	@Autowired
 	private FlightRepository repository;
 	
+	
 	private Flight firstFlight;
 
 	@Before
@@ -46,15 +49,14 @@ public class FlightTest {
 		repository.deleteAll();
 		
 		firstFlight = repository.save(new Flight("Thessaloniki", "Athens", 50, 60, new Date()));
-		
 		repository.save(new Flight("Rhodes", "Athens",50, 40, new Date()));
 		repository.save(new Flight("Ioannina", "Athens", 90, 60, new Date()));
 		repository.save(new Flight("Thessaloniki", "Ioannina", 30, 60, new Date()));
 		repository.save(new Flight("Athens", "Thessaloniki", 40, 60, new Date()));
 		repository.save(new Flight("Thessaloniki", "Heraklion", 100, 60, new Date()));
-
-
 	}
+	
+	
 	@Test
 	public void testGetFlighs() throws Exception{
 		mockMvc.perform(get("/flights"))
