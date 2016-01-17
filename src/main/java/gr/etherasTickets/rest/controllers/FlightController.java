@@ -42,6 +42,8 @@ public class FlightController {
 		return new ResponseEntity<> (repository.getFlightById(flightId),HttpStatus.OK);
 	}
 	
+	
+	
 	/*
 	@RequestMapping( value = "/{flightId}/seats", method = RequestMethod.GET )
 	public ResponseEntity<List<Seat>> getSeatsByFlightId(@PathVariable String flightId) throws RestException{

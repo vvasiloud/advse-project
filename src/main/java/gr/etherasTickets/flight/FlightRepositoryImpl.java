@@ -1,5 +1,6 @@
 package gr.etherasTickets.flight;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,6 +65,50 @@ public class FlightRepositoryImpl implements CustomFlightRepository  {
 			throw new NotFound("Flight with id " + flightId + " does not exist!");
 		
 		return flight;
+	}
+
+	@Override
+	public List<String> getAllFlightsTo() throws NotFound {
+		List<Flight> flights =  operations.findAll(Flight.class);
+		if(flights.isEmpty())
+			throw new NotFound("Flights are empty!");
+		
+		List<String> toList = new ArrayList<String>();
+		for(Flight flight : flights){
+			String to = flight.getTo();
+			boolean foundSame = false;
+			for(String s : toList){
+				if(s.equals(to)){
+					foundSame = true;
+					break;
+				}
+			}
+			if(!foundSame)
+				toList.add(to);
+		}
+		return toList;
+	}
+
+	@Override
+	public List<String> getAllFlightsFrom() throws NotFound {
+		List<Flight> flights =  operations.findAll(Flight.class);
+		if(flights.isEmpty())
+			throw new NotFound("Flights are empty!");
+		
+		List<String> fromList = new ArrayList<String>();
+		for(Flight flight : flights){
+			String from = flight.getFrom();
+			boolean foundSame = false;
+			for(String s : fromList){
+				if(s.equals(from)){
+					foundSame = true;
+					break;
+				}
+			}
+			if(!foundSame)
+				fromList.add(from);
+		}
+		return fromList;
 	}
 
 	
