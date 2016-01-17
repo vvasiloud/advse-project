@@ -51,10 +51,6 @@ public class FlightRepositoryImpl implements CustomFlightRepository  {
 		return flightList;
 	}
 	
-	public List<Seat> getSeatsById(String flightId)throws BadArguments, NotFound{
-		return getFlightById(flightId).getSeats();
-	}
-	
 	public Flight getFlightById (String flightId)throws BadArguments , NotFound{
 		if (flightId==null)
 			throw new BadArguments("FlightId is null");

@@ -15,6 +15,7 @@ import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
 
 import gr.etherasTickets.EtherasTicketsApplication;
+import gr.etherasTickets.exceptions.RestException;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = EtherasTicketsApplication.class, loader = AnnotationConfigContextLoader.class)
@@ -31,7 +32,7 @@ public class UpdateUserTest {
 	}
     
 	@Test
-    public void testUpdateUser() {
+    public void testUpdateUser() throws RestException {
 		//create test user
 		beforeUpdateUser = new User("Vasilis","Georgakopoulos","tralala@mail.com","vgeorga","pass123",0.0, new ArrayList<Reservation>());
 		repository.insert(beforeUpdateUser); //insert into db

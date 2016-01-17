@@ -4,6 +4,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import gr.etherasTickets.exceptions.LogicError;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,6 +40,12 @@ public class User {
     
     public User(){
     	
+    }
+    
+    public void removeBalance(int amount) throws LogicError{
+    	if(getBalance() < amount)
+			throw new LogicError("User "+getUsername()+" does not have enough money!");
+    	setBalance(getBalance() - amount);
     }
     
     public void addReservation(Reservation newReservation){

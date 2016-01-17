@@ -118,6 +118,7 @@ public class FlightTest {
 		.andExpect(jsonPath("$.id").value(firstFlight.getId()));
 	}
 
+	/*
 	@Test
 	public void testGetFlightByIdSeats() throws Exception{
 		mockMvc.perform(get(String.format("/flights/%s/seats" , firstFlight.getId())))
@@ -125,7 +126,7 @@ public class FlightTest {
 		.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
 		.andExpect(jsonPath("$").isArray());
 	}
-
+	*/
 
 
 

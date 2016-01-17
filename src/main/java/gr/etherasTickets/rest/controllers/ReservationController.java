@@ -29,33 +29,25 @@ public class ReservationController {
 	private UserRepository userRepository;
 
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<String> addReservation(@PathVariable String userid , @RequestBody ReservationResource newReservation) throws RestException{
+	public ResponseEntity<String> addReservation(@PathVariable String userid , @RequestBody ReservationResource reservationResource) throws RestException{
 		User user = userRepository.getUserById(userid);
-		if(user == null)
-			throw new BadArguments("User with id "+userid+" does not exist");
 
-		newReservation.verifyForCreate();
+		reservationResource.verifyForCreate();
 
-		Flight flight = flightRepository.getFlightById(newReservation.getFlightID());
+		Flight flight = flightRepository.getFlightById(reservationResource.getFlightID());
 
-		int price = flight.getPrice() * newReservation.getNumOfSeats();
+		Reservation newReservation = new Reservation(flight , reservationResource.getNumOfSeats() , new Date());
 		
-		if(user.getBalance() < price)
-			throw new LogicError("User "+user.getUsername()+" does not have enough money!");
-
-		if(flight.getAvailableSeats() < newReservation.getNumOfSeats())
-			throw new LogicError("Flight with id "+newReservation.getFlightID()+" does not have availables seats!");
-
-		flight.setAvailableSeats(flight.getAvailableSeats() - newReservation.getNumOfSeats());
-		user.setBalance(user.getBalance() - price);
 		
-		String reservationId =  UUID.randomUUID().toString();
+		flight.removeSeats(reservationResource.getNumOfSeats());
+		user.removeBalance(newReservation.getCost());
 		
-		user.addReservation(new Reservation(reservationId ,flight,  newReservation.getNumOfSeats(), new Date()));	
+		user.addReservation(newReservation);	
 		
 		userRepository.save(user);
-
-		return new ResponseEntity<String>(String.format("/users/%s/reservations/%s",userid , reservationId) , HttpStatus.OK);
+		flightRepository.save(flight);
+		
+		return new ResponseEntity<String>(String.format("/users/%s/reservations/%s",userid , newReservation.getId()) , HttpStatus.OK);
 	}
 
 
@@ -83,8 +75,6 @@ public class ReservationController {
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<Reservation>> getReservations(@PathVariable String userid) throws RestException{
 		User user = userRepository.getUserById(userid);
-		if(user == null)
-			throw new BadArguments("User with id "+userid+" does not exist");
 		
 		if(user.getReservations().isEmpty())
 			throw new NotFound("User with id "+ user.getId()+ "Doesn't have reservations");

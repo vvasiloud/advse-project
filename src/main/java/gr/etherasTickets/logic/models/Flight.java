@@ -12,6 +12,7 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import gr.etherasTickets.View;
+import gr.etherasTickets.exceptions.LogicError;
 
 
 @Document(collection = "flights")
@@ -38,7 +39,6 @@ public class Flight {
 	private int availableSeats;
 	
 	private int maxSeats;
-	private List<Seat> seats;
 	
 	public Flight(){}
 	
@@ -49,13 +49,11 @@ public class Flight {
 		this.price = price;
 		this.maxSeats = maxSeats;
 		availableSeats = maxSeats;
-		seats = createSeats(maxSeats, 6);
+		//seats = createSeats(maxSeats, 6);
 	}
 	
 	public String getId(){
-		
 		return id;
-		
 	}
 
 	public static List<Seat> createSeats(int maxSeats , int seatRowWidth){
@@ -74,20 +72,18 @@ public class Flight {
 		return seats;
 	}
 	
+	public void removeSeats(int numSeats) throws LogicError{
+		if(numSeats > availableSeats)
+			throw new LogicError("Flight with id "+ getId()+" does not have availables seats!");
+		setAvailableSeats(getAvailableSeats() - numSeats);
+	}
+	
 	public Date getDate() {
 		return date;
 	}
 
 	public void setDate(Date date) {
 		this.date = date;
-	}
-
-	public List<Seat> getSeats() {
-		return seats;
-	}
-
-	public void setSeats(List<Seat> seats) {
-		this.seats = seats;
 	}
 
 	public String getTo() {

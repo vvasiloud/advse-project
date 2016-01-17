@@ -14,6 +14,7 @@ import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
 
 import gr.etherasTickets.EtherasTicketsApplication;
+import gr.etherasTickets.exceptions.RestException;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = EtherasTicketsApplication.class, loader = AnnotationConfigContextLoader.class)
@@ -43,7 +44,7 @@ public class UserTest {
     }
 
 	@Test
-	public void testGetUser(){
+	public void testGetUser() throws RestException{
 		//update username
 		User expectedUser = repository.findByUsername("testUser");
 		User actualUser = repository.getUserById(expectedUser.getId());
