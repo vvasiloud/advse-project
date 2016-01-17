@@ -1,0 +1,4 @@
+{"_id":{"$oid":"569bd10230228f937aa25f3b"},"_class":"gr.etherasTickets.user.User","firstName":"Test","lastName":"Testopoulos","username":"test","email":"testopoulos@test.test","password":"password","balance":200.0,"reservations":[]}
+{"_id":{"$oid":"569bd10230228f937aa25f3c"},"_class":"gr.etherasTickets.user.User","firstName":"Test2","lastName":"Testopoulos2","username":"test2","email":"testopoulos2@test.test","password":"password","balance":3000.0,"reservations":[]}
+{"_id":{"$oid":"569bd10230228f937aa25f3d"},"_class":"gr.etherasTickets.user.User","firstName":"Test3","lastName":"Testopoulos3","username":"test3","email":"testopoulos3@test.test","password":"password","balance":150.0,"reservations":[]}
+{"_id":{"$oid":"569bd10230228f937aa25f3e"},"_class":"gr.etherasTickets.user.User","firstName":"Test3","lastName":"Testopoulos4","username":"test4","email":"testopoulos4@test.test","password":"password","balance":120.0,"reservations":[]}

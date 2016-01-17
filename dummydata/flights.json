@@ -1,0 +1,6 @@
+{"_id":{"$oid":"569bd10230228f937aa25f35"},"_class":"gr.etherasTickets.logic.models.Flight","date":{"$date":"2016-01-17T17:36:02.961Z"},"to":"Thessaloniki","from":"Athens","price":50,"availableSeats":60,"maxSeats":60}
+{"_id":{"$oid":"569bd10230228f937aa25f36"},"_class":"gr.etherasTickets.logic.models.Flight","date":{"$date":"2016-01-17T17:36:02.963Z"},"to":"Rhodes","from":"Athens","price":50,"availableSeats":40,"maxSeats":40}
+{"_id":{"$oid":"569bd10230228f937aa25f37"},"_class":"gr.etherasTickets.logic.models.Flight","date":{"$date":"2016-01-17T17:36:02.964Z"},"to":"Ioannina","from":"Athens","price":90,"availableSeats":60,"maxSeats":60}
+{"_id":{"$oid":"569bd10230228f937aa25f38"},"_class":"gr.etherasTickets.logic.models.Flight","date":{"$date":"2016-01-17T17:36:02.965Z"},"to":"Thessaloniki","from":"Ioannina","price":30,"availableSeats":60,"maxSeats":60}
+{"_id":{"$oid":"569bd10230228f937aa25f39"},"_class":"gr.etherasTickets.logic.models.Flight","date":{"$date":"2016-01-17T17:36:02.967Z"},"to":"Athens","from":"Thessaloniki","price":40,"availableSeats":60,"maxSeats":60}
+{"_id":{"$oid":"569bd10230228f937aa25f3a"},"_class":"gr.etherasTickets.logic.models.Flight","date":{"$date":"2016-01-17T17:36:02.968Z"},"to":"Thessaloniki","from":"Heraklion","price":100,"availableSeats":60,"maxSeats":60}
