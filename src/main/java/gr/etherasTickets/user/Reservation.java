@@ -1,14 +1,15 @@
 package gr.etherasTickets.user;
 
-import gr.etherasTickets.flight.Flight;
-import gr.etherasTickets.flight.Seat;
-
 import gr.etherasTickets.exceptions.*;
+import gr.etherasTickets.logic.models.Flight;
+import gr.etherasTickets.logic.models.Seat;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 public class Reservation {
 
@@ -38,18 +39,16 @@ public class Reservation {
                 
     }
     
-    public Reservation(){
-    	
-    	
-    }
+    public Reservation(){}
     
     public Reservation(Flight flight, int numberOfSeats , Date date) {
-        this.flight = flight;
-        this.numberOfSeats = numberOfSeats;
-        this.date = date;
-        this.cancel=false;
+       this(UUID.randomUUID().toString() , flight , numberOfSeats , date);
     }
     
+    
+    public int getCost(){
+    	return flight.getPrice() * numberOfSeats;
+    }
    
     public String getId(){
     	
@@ -83,7 +82,7 @@ public class Reservation {
     	
     	this.cancel=cancel;
     }
-    public boolean getCancel (){
+    public boolean isCancel (){
     
     	return cancel;
     }

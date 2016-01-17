@@ -9,6 +9,8 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.util.Assert;
 
 import gr.etherasTickets.exceptions.*;
+import gr.etherasTickets.logic.models.Flight;
+import gr.etherasTickets.logic.models.Seat;
 
 public class FlightRepositoryImpl implements CustomFlightRepository  {
 	
@@ -47,10 +49,6 @@ public class FlightRepositoryImpl implements CustomFlightRepository  {
 		if(flightList.isEmpty())
 			throw new NotFound("Not Flights found!");
 		return flightList;
-	}
-	
-	public List<Seat> getSeatsById(String flightId)throws BadArguments, NotFound{
-		return getFlightById(flightId).getSeats();
 	}
 	
 	public Flight getFlightById (String flightId)throws BadArguments , NotFound{

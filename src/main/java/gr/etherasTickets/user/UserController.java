@@ -6,6 +6,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import gr.etherasTickets.exceptions.RestException;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,7 +19,7 @@ public class UserController {
     private UserRepository repository;
 
     @RequestMapping(path = "/{id}" , method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<User> getUser(@PathVariable String id){
+    public ResponseEntity<User> getUser(@PathVariable String id) throws RestException{
         return new ResponseEntity<>(repository.getUserById(id), HttpStatus.OK);
     }
 
@@ -45,7 +47,7 @@ public class UserController {
     }
 
     @RequestMapping(path = "/{id}" , method = RequestMethod.DELETE)
-    public ResponseEntity<User> removeUser(@PathVariable String id){
+    public ResponseEntity<User> removeUser(@PathVariable String id) throws RestException{
         User user = repository.getUserById(id);
         if(user == null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
