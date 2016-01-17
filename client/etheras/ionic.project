@@ -5,6 +5,12 @@
     "sass",
     "watch"
   ],
+  "proxies": [
+        {
+          "path": "/etherastickers/users/569bd10230228f937aa25f3b",
+          "proxyUrl": "http://snf-694376.vm.okeanos.grnet.gr:8080/etherastickers/users/569bd10230228f937aa25f3b"
+        }
+      ],
   "watchPatterns": [
     "www/**/*",
     "!www/lib/**/*"
