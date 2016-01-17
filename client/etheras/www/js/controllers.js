@@ -10,7 +10,7 @@ angular.module('starter.controllers', [])
     httpService.get('js/flights.json').then(function(flights) {
       results = flights.data;
       console.log(results);
-      resultsData.set(results)
+      resultsData.set(results);
       $state.go('tab.results');
    
     })
@@ -18,11 +18,18 @@ angular.module('starter.controllers', [])
   }
 })
 
-.controller('AccountController', function($scope, $http) {
+.controller('AccountController', function($scope, $http, $localstorage, $state, httpService) {
+   $scope.$on('$ionicView.beforeEnter', function() {
+       httpService.get('/users/569bd10230228f937aa25f3b', []).success(function(data) {
+        console.log(data);
+          $scope.user = data;
+      })
+   });
 
-  $http.get('js/user.json').success(function(data) {
-      $scope.user = data;
-  })
+  $scope.logout = function() {
+    $localstorage.clear();
+    $state.go('auth');
+  }
 
 
 })
@@ -50,8 +57,45 @@ angular.module('starter.controllers', [])
   }
 })
 
-.controller('RegisterController', function($scope) {})
+.controller('RegisterController', function($scope, httpService, $localstorage) {
 
-.controller('ReserveController', function($scope) {})
+  $scope.register = function(user){
+    console.log(user);
+    $scope.error = 0;
+    var url = '/users'
+    var response = httpService.post(url, user);
+    console.log(response);
+    if (response == 1) {
+       $localstorage.set('user', response.data.id);
+       $state.go('tab.account');
+    }
+    else {
+      $scope.error = "Παρουσιάστηκε κάποιο πρόβλημα. Παρακαλώ προσπαθήστε ξανά!"
+    }
 
-.controller('LoginController', function($scope) {});
+  }
+})
+
+.controller('LoginController', function($scope, httpService, $localstorage) {
+
+  $scope.login = function(user) {
+    console.log(user);
+  
+    var urlParams = {
+      'username' : user.username,
+      'password': user.password
+    }
+
+    httpService.get(url, urlParams).then(function(response) {
+        console.log(response);
+        if(response == 200){
+          $localstorage.set('user', response.id)
+          $state.go('tab.account');
+        }
+        else {
+          $scope.error = "dasdas";
+        }
+     
+      });
+  }
+});
