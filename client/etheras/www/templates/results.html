@@ -30,11 +30,20 @@
 
 				  <div class="reserve">
 				  	 <form name="seatsForm" novalidate='' ng-submit="reserve(flight)">
-				  	   <label class="item item-input">
-				        <span class="input-label">Seats</span>
-				        <input type="number" ng-model="flight.seats" required>
-				      </label>
-				  	<button class="button button-icon" ng-click="reserve(flight.id)">Reserve</button>
+				  	 <div class="row">
+					  	 <div class="col col-75">
+					  	   <label class="item item-input">
+					        <span class="input-label">Seats:</span>
+					        <input type="number" ng-model="flight.seats" required>
+					      </label>
+					     
+					      <input type="hidden" ng-model="flight.id" value="{{flight.id}}">
+					  	</div>
+					  	<div class="col col-25">
+					  		<button class="button button-icon">Reserve</button>
+					  	</div>
+				  	</div>
+				  	</form>
 				  </div>
 
 			</div>
