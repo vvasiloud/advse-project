@@ -1,14 +1,13 @@
 package gr.etherasTickets.user;
 
+import gr.etherasTickets.dto.AuthDto;
+import gr.etherasTickets.exceptions.RestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import gr.etherasTickets.exceptions.RestException;
-
-import java.util.HashMap;
 import java.util.Map;
 
 @RestController
@@ -24,20 +23,20 @@ public class UserController {
     }
 
     @RequestMapping(value = "/auth" , method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> authorize(@RequestParam Map<String,String> requestParams) throws Exception{
+    public ResponseEntity<AuthDto> authorize(@RequestParam Map<String,String> requestParams) throws Exception{
         String username=requestParams.get("username");
         String password=requestParams.get("password");
         String response = repository.userLogin(username,password);
-        Map<String,String> jsonResponse = new HashMap<String,String>();
-        jsonResponse.put("_userId", response);
-        return new ResponseEntity<>(jsonResponse.toString(), HttpStatus.OK);
+        AuthDto authDto = new AuthDto(response);
+
+        return new ResponseEntity<>(authDto, HttpStatus.OK);
     }
 
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<String> createUser(@RequestBody User user) throws Exception{
         User users = repository.findByUsername(user.getUsername());
-        if(users == null){
+        if(users != null){
             throw new Exception("User exists");
         }
         User newUser = user;
@@ -56,7 +55,7 @@ public class UserController {
         repository.removeUser(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-    
+
     @RequestMapping(path = "/{id}" , method = RequestMethod.PUT)
     public ResponseEntity<User> updateUser(@PathVariable String id, @RequestBody User user){
 
@@ -64,8 +63,8 @@ public class UserController {
         repository.updateUser(id, user);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-    
-    
-    
-    
+
+
+
+
 }
