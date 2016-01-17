@@ -2,18 +2,24 @@ angular.module('starter.services', [])
 
 .factory('constant', function() {
 	return {
-		api : "http://"
+		api : "http://snf-694376.vm.okeanos.grnet.gr:8080/etherastickers"
 	}
 })
 
 .factory('httpService', function($http, constant) {
 	return{
-		get: function(url){
+		get: function(url, urlParams){
 			var link = constant.api + url;
-			// return $http.get(link, {cache: false, headers: 'header("Cache-Control: no-store, no-cache, must-revalidate")'})
-			// .success(function(data){
-			//         return data;
-   			// 	})
+            console.log(link);
+			return $http({
+                method: 'GET',
+                url: link,
+                params: urlParams
+            })
+			.success(function(data){
+                console.log(data);
+		        return data;
+			})
 			return $http.get(url).success(function(data) {
 				return data;
 			});
@@ -26,6 +32,29 @@ angular.module('starter.services', [])
     		});
     	}
 	};
+})
+
+.factory('$localstorage', function($window, $ionicHistory) {
+  return {
+    set: function(key, value) {
+      $window.localStorage[key] = value;
+    },
+    get: function(key, defaultValue) {
+      return $window.localStorage[key] || defaultValue;
+    },
+    setObject: function(key, value) {
+      $window.localStorage[key] = JSON.stringify(value);
+    },
+    getObject: function(key) {
+      return JSON.parse($window.localStorage[key] || '{}');
+    },
+    clear: function () {
+        $window.localStorage.clear();
+        $ionicHistory.clearHistory();
+        $ionicHistory.clearCache();
+        $ionicHistory.nextViewOptions({ disableBack: true, historyRoot: true });
+      }
+  };
 })
 
 .factory('resultsData', function () {
