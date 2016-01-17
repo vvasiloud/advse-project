@@ -32,7 +32,8 @@ in ionic's _variables.scss file.
     color: #013746;
     font-size: 20px; }
   .reservations .item-title {
-    background: rgba(63, 155, 199, 0.68); }
+    background: rgba(63, 155, 199, 0.68);
+    text-align: center; }
   .reservations .item-title h2 {
     font-size: 19px; }
   .reservations .item-body {
@@ -81,13 +82,55 @@ in ionic's _variables.scss file.
     background-color: #f4fcff;
     height: 70px; }
     .results .list .item .reserve .button {
-      margin-top: 10px;
+      margin-top: 2px;
       margin-right: 10px;
       background-color: #417D9A;
       color: #D0DDE0;
       float: right; }
-      .results .list .item .reserve .button .icon {
-        font-size: 5px; }
+    .results .list .item .reserve .item-input {
+      background: #f4fcff;
+      border: none;
+      margin-top: 8px; }
+
+.auth {
+  text-align: center;
+  padding-top: 90%; }
+  .auth .auth-buttons {
+    margin-top: 100%; }
+    .auth .auth-buttons .button {
+      background-color: #417D9A;
+      color: #D0DDE0;
+      font-size: 25px;
+      padding: 10px; }
+    .auth .auth-buttons h3 {
+      color: #0082a5;
+      font-size: 25px; }
+  .auth .auth-list {
+    padding-top: 100%; }
+    .auth .auth-list .item {
+      margin-top: 20px;
+      background-color: #417D9A;
+      border: none;
+      color: #D0DDE0; }
+      .auth .auth-list .item input[type="text"], .auth .auth-list .item input[type="number"] {
+        color: #D0DDE0;
+        font-size: 20px; }
+      .auth .auth-list .item .input-label {
+        color: #D0DDE0;
+        font-size: 20px;
+        text-align: left; }
+  .auth .button {
+    background-color: #417D9A;
+    color: #D0DDE0;
+    font-size: 23px;
+    margin-top: 20px;
+    padding-left: 30px;
+    padding-right: 30px; }
+  .auth .register {
+    padding-top: 0;
+    margin-top: 34px; }
+    .auth .register .button {
+      margin-top: 40px; }
 
 /*!
   Ionicons, v2.0.1
