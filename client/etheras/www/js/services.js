@@ -2,7 +2,7 @@ angular.module('starter.services', [])
 
 .factory('constant', function() {
 	return {
-		api : "http://snf-694376.vm.okeanos.grnet.gr:8080/etherastickers"
+		api : "http://localhost:8100/etherastickets"
 	}
 })
 
@@ -19,16 +19,16 @@ angular.module('starter.services', [])
 			.success(function(data){
                 console.log(data);
 		        return data;
-			})
-			return $http.get(url).success(function(data) {
-				return data;
-			});
+			}).error(function(res) {
+                return res;
+            });
     	},
 
     	post: function(url, data){
     		var link = constant.api + url;
     		$http.post(link, data).then(function(res) {
-    			return res.status;
+                console.log(res);
+                return res;
     		});
     	}
 	};

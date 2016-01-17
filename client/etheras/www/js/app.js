@@ -25,10 +25,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
 .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, $httpProvider) {
 
-   $httpProvider.defaults.useXDomain = true;
-    $httpProvider.defaults.headers.common = 'Content-Type: application/json';
-    delete $httpProvider.defaults.headers.common['X-Requested-With'];
-  
+  $httpProvider.defaults.useXDomain = true;
+  $httpProvider.defaults.headers.common = 'Content-Type: application/json';
+  delete $httpProvider.defaults.headers.common['X-Requested-With'];
+
   $ionicConfigProvider.tabs.position('bottom');
   $ionicConfigProvider.navBar.alignTitle('center');
   $ionicConfigProvider.tabs.style('standard');

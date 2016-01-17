@@ -25,6 +25,11 @@
         <input type="number" ng-model="flight.min" required>
       </label>
 
+      <label class="item item-input">
+        <span class="input-label">Available seats</span>
+        <input type="number" ng-model="flight.seats" required>
+      </label>
+
     <button class="button button-block button-complete" ng-disabled="searchForm.$invalid" type="submit">
       Search
     </button>

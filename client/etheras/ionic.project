@@ -7,8 +7,8 @@
   ],
   "proxies": [
         {
-          "path": "/etherastickets/users/569bd10230228f937aa25f3b",
-          "proxyUrl": "http://snf-694376.vm.okeanos.grnet.gr:8080/etherastickets/users/569bd10230228f937aa25f3b"
+          "path": "/etherastickets",
+          "proxyUrl": "http://snf-694376.vm.okeanos.grnet.gr:8080/etherastickets"
         }
       ],
   "watchPatterns": [
