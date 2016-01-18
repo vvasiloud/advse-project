@@ -26,10 +26,12 @@ angular.module('starter.services', [])
 
     	post: function(url, data){
     		var link = constant.api + url;
-    		$http.post(link, data).then(function(res) {
-                console.log(res);
+    		return $http.post(link, data).success(function(res) {
                 return res;
-    		});
+    		}).error(function(res, status){
+                console.log(status);
+                return status;
+            });
     	}
 	};
 })

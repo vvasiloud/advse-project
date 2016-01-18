@@ -16,42 +16,24 @@
   			<h3> #{{user.username}} </h3>
   		</div>
 
-  		<div class="reservations">
+  		<div class="reservations" ng-if="user.reservations.length>0">
 	  		<h3>My reservations:</h3>
 
-	  		<div class="list card">
+	  		<div class="list card" ng-repeat="reservation in user.reservations">
 
-			  <div class="item item-title">
-			    <h2>From ->To</h2>
-			    <p>November 05, 1955</p>
+			  <div class="item user reservations item-title">
+			    <h2>{{reservation.flight.from}} -> {{reservation.flight.to}}</h2>
+			    <p>{{ reservation.flight.date | date:'MMMM yyyy, dd - HH:mm'}}</p>
 			  </div>
 
 			  <div class="item item-body">
+			 
 			  	<div class="row">
 			  		<div class="col col-33">
-			  			<p>Departure</p>
+			  			<p>Seats:</p>
 			  		</div>
 			  		<div class="col col-67">
-			  			<p class="bold">aerodromio</p>
-			  			<p>wra</p>
-			  		</div>
-			  	</div>
-			  	<div class="row">
-			  		<div class="col col-33">
-			  			<p>Arrival</p>
-			  		</div>
-			  		<div class="col col-67">
-			  			<p class="bold">aerodromio</p>
-			  			<p>wra</p>
-			  		</div>
-			  	</div>
-
-			  	<div class="row">
-			  		<div class="col col-33">
-			  			<p>Seat:</p>
-			  		</div>
-			  		<div class="col col-67">
-			  			<p class="bold">Α32</p>
+			  			<p class="bold">{{reservation.numOfSeats}}</p>
 			  		</div>
 			  	</div>
 
@@ -60,16 +42,24 @@
 			  			<p>Cost:</p>
 			  		</div>
 			  		<div class="col col-67">
-			  			<p class="bold"> € 100</p>
+			  			<p class="bold"> € {{reservation.cost}}</p>
 			  		</div>
 			  	</div>
 
-			    
-			    
 			  </div>
 
+			</div>
+  		</div>
+
+  		<div ng-if="!user.reservations.length>0" class="reservations">
+  			<h3>My reservations:</h3>
+
+	  		<div class="list card">
+
+			  <div class="item user.reservations">
+			    <h2>No reservations yet</h2>
+			  </div>
 		</div>
 
-  		</div>
   </ion-content>
 </ion-view>

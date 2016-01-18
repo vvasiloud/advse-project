@@ -1,34 +1,50 @@
 angular.module('starter.controllers', [])
 
-.controller('SearchController', function($scope, $state, resultsData, httpService) {
+.controller('SearchController', function($scope, $state, resultsData, httpService, $ionicPopup) {
  var results = [];
+   $scope.$on('$ionicView.beforeEnter', function() {
+      var url = "/cities";
+      var urlParams = {
+        'type': 'from'
+      };
+       httpService.get(url, urlParams).success(function(data) {
+          $scope.cities = data;
+      })
+   });
 
   $scope.search = function(flight) {
-    console.log(flight);
+
     var urlParams = {
       'to' : flight.to,
       'from': flight.from,
-      'availableSeats': flight.seats,
       'minPrice': flight.min,
       'maxPrice': flight.max
     };
 
     var url = "/flights";
 
-    httpService.get(url, urlParams).then(function(flights) {
-      results = flights.data;
-      console.log(results);
+    httpService.get(url, urlParams).success(function(flights) {
+      results = flights;
       resultsData.set(results);
       $state.go('tab.results');
+    }).error(function(res){
+        var errorPopup=$ionicPopup.show({
+            title: "",
+            template: "Δεν υπάρχουν πτήσεις που να ταιριάζουν στην αναζήτηση.",
+            cssClass: 'error-popup',
+            buttons:[
+              {text: 'OK',
+               type: 'button button-complete',
+              }
+            ]
+          });
     })
-    // post request..omn success redirect to results
   }
 })
 
 .controller('AccountController', function($scope, $http, $localstorage, $state, httpService) {
    $scope.$on('$ionicView.beforeEnter', function() {
       var url = "/users/" + $localstorage.get('user');
-      console.log(url);
        httpService.get(url, []).success(function(data) {
           $scope.user = data;
       })
@@ -43,7 +59,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('ResultController', function($scope, resultsData, httpService, errorPopup) {
+.controller('ResultController', function($scope, resultsData, httpService, $ionicPopup, $localstorage, $state) {
 
  $scope.$on('$ionicView.beforeEnter', function() {
     $scope.flights = resultsData.get();
@@ -53,40 +69,28 @@ angular.module('starter.controllers', [])
  $scope.reserve = function(flight) {
   var url = "/users/" + $localstorage.get('user') + "/reservations";
   var data = {
-    'flightId' : flight.id,
+    'flightID' : flight.id,
     'numOfSeats': flight.seats
   };
 
+  httpService.post(url, data).success(function(response) { 
+        
+        $state.go('tab.account');
+    
+    }).error(function(response) {
 
-
-  var response = httpService.post(url, data);
-  if (response == 1) {
-    var completePopup=$ionicPopup.show({
-        title: "Reservation Complete",
-        template: "Η κράτηση ολοκληρώθηκε με επιτυχία",
-        cssClass: 'custom-popup',
-        buttons:[
-          {text: 'OK',
-           type: 'button button-complete',
-          }
-        ]
-      });
-  }
-  else {
-    var errorPopup=$ionicPopup.show({
-          title: "Error",
-          template: "An error occured! PLease try again",
-          cssClass: 'error-popup',
-          buttons:[
-            {text: 'OK',
-             type: 'button button-complete',
-            }
-          ]
-        });
-  }
-  console.log(flight);
- }
-
+        var errorPopup=$ionicPopup.show({
+            title: "Error",
+            template: "Παρουσιάστηκε κάποιο πρόβλημα! Παρακαλώ ελέξτε το υπόλοιπό σας και τον αριθμό θέσεων και προσπαθήστε ξανά!",
+            cssClass: 'error-popup',
+            buttons:[
+              {text: 'OK',
+               type: 'button button-complete',
+              }
+            ]
+          });
+    });
+}
 })
 
 .controller('AuthController', function($scope, $state) {
@@ -99,26 +103,41 @@ angular.module('starter.controllers', [])
   }
 })
 
-.controller('RegisterController', function($scope, httpService, $localstorage) {
+.controller('RegisterController', function($scope, httpService, $localstorage, $state) {
 
   $scope.register = function(user){
-    console.log(user);
     $scope.error = 0;
     var url = '/users'
-    var response = httpService.post(url, user);
-    console.log(response);
-    if (response == 1) {
+    httpService.post(url, user).then(function(response) {
+
+    if (response.status == 201) {
+
        $localstorage.set('user', response.data.id);
-       $state.go('tab.account');
+
+        var urlParams = {
+          'username' : user.username,
+          'password': user.password
+        }
+
+      var url = '/users/auth'
+
+      httpService.get(url, urlParams).success(function(data) {
+            $localstorage.set('user', data.userId)
+            $state.go('tab.account');
+          }).error(function(response) {
+             $state.go('auth/login');
+          });
     }
     else {
       $scope.error = "Παρουσιάστηκε κάποιο πρόβλημα. Παρακαλώ προσπαθήστε ξανά!"
     }
 
+    });
+    
   }
 })
 
-.controller('LoginController', function($scope, httpService, $localstorage) {
+.controller('LoginController', function($scope, httpService, $localstorage, $state) {
 
   $scope.error = 0;
   $scope.login = function(user) {
