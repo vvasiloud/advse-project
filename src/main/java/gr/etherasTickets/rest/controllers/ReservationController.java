@@ -3,7 +3,6 @@ package gr.etherasTickets.rest.controllers;
 import gr.etherasTickets.data.repositories.FlightRepository;
 import gr.etherasTickets.data.repositories.UserRepository;
 import gr.etherasTickets.exceptions.*;
-import gr.etherasTickets.flight.*;
 import gr.etherasTickets.logic.models.Flight;
 import gr.etherasTickets.logic.models.Reservation;
 import gr.etherasTickets.logic.models.User;
