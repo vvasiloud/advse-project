@@ -5,19 +5,20 @@
   <form name="searchForm" novalidate='' ng-submit="search(flight)" class="searchForm">
   
     <div class="list search-list">
-      <label class="item item-input">
+      <label class="item item-input item-select">
         <span class="input-label">From</span>
-        <input type="text" ng-model="flight.from" required>
+        <select ng-model="flight.from" ng-options="city for city in cities"></select>
+        <!-- <input type="text" ng-model="flight.from" required> -->
       </label>
 
-      <label class="item item-input">
+      <label class="item item-input item-select">
         <span class="input-label">To</span>
-        <input type="text" ng-model="flight.to" required>
+         <select ng-model="flight.to" ng-options="city for city in cities"></select>
       </label>
 
       <label class="item item-input">
         <span class="input-label">Max €</span>
-        <input type="number" ng-model="flight.seats" required>
+        <input type="number" ng-model="flight.max" required>
       </label>
      
       <label class="item item-input">
@@ -26,7 +27,7 @@
       </label>
 
       <label class="item item-input">
-        <span class="input-label">Available seats</span>
+        <span class="input-label">Seats</span>
         <input type="number" ng-model="flight.seats" required>
       </label>
 

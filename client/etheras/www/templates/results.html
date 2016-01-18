@@ -40,7 +40,7 @@
 					      <input type="hidden" ng-model="flight.id" value="{{flight.id}}">
 					  	</div>
 					  	<div class="col col-25">
-					  		<button class="button button-icon">Reserve</button>
+					  		<button class="button button-icon ng-disabled="seatsForm.$invalid"">Reserve</button>
 					  	</div>
 				  	</div>
 				  	</form>
