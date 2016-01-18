@@ -10,14 +10,12 @@ angular.module('starter.services', [])
 	return{
 		get: function(url, urlParams){
 			var link = constant.api + url;
-            console.log(link);
 			return $http({
                 method: 'GET',
                 url: link,
                 params: urlParams
             })
 			.success(function(data){
-                console.log(data);
 		        return data;
 			}).error(function(res) {
                 return res;
@@ -29,10 +27,18 @@ angular.module('starter.services', [])
     		return $http.post(link, data).success(function(res) {
                 return res;
     		}).error(function(res, status){
-                console.log(status);
                 return status;
             });
-    	}
+    	},
+
+        put: function(url, data) {
+            var link = constant.api + url;
+            return $http.put(link, data).success(function(res) {
+                return res;
+            }).error(function(res, status){
+                return status;
+            });
+        }
 	};
 })
 

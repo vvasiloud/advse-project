@@ -55,15 +55,15 @@ angular.module('starter.controllers', [])
     $state.go('auth');
   }
 
-
-
+  $scope.edit = function() {
+    $state.go('tab.edit');
+  }
 })
 
 .controller('ResultController', function($scope, resultsData, httpService, $ionicPopup, $localstorage, $state) {
 
  $scope.$on('$ionicView.beforeEnter', function() {
     $scope.flights = resultsData.get();
-    console.log($scope.flights);
   });
 
  $scope.reserve = function(flight) {
@@ -137,6 +137,34 @@ angular.module('starter.controllers', [])
   }
 })
 
+.controller('EditController', function($scope, $http, $localstorage, $state, httpService) {
+   $scope.$on('$ionicView.beforeEnter', function() {
+      var url = "/users/" + $localstorage.get('user');
+       httpService.get(url, []).success(function(data) {
+          $scope.user = data;
+      })
+   });
+
+  $scope.edit = function(user) {
+    var url = "/users/" + $localstorage.get('user');
+       httpService.put(url, user).success(function(response) {
+          $state.go('tab.account');
+      }).error(function(response){
+         var errorPopup=$ionicPopup.show({
+            title: "Error",
+            template: "Παρουσιάστηκε κάποιο πρόβλημα! Παρακαλώ προσπαθήστε ξανά!",
+            cssClass: 'error-popup',
+            buttons:[
+              {text: 'OK',
+               type: 'button button-complete',
+              }
+            ]
+          });
+      })
+  }
+
+})
+
 .controller('LoginController', function($scope, httpService, $localstorage, $state) {
 
   $scope.error = 0;
@@ -150,11 +178,9 @@ angular.module('starter.controllers', [])
     var url = '/users/auth'
 
     httpService.get(url, urlParams).success(function(data) {
-        console.log(data);
           $localstorage.set('user', data.userId)
           $state.go('tab.account');
         }).error(function(response) {
-          console.log(response);
            $scope.error = "Παρουσιάστηκε κάποιο πρόβλημα. Παρακαλώ ελέξτε τα στοιχεία σας και προσπαθήστε ξανά";
         });
       

@@ -1,0 +1,40 @@
+ <ion-view view-title="Edit Profile">
+<ion-content class="padding background2 auth">
+
+  <form name="editForm" novalidate='' ng-submit="edit(user)">
+    <div ng-if="error" class="error-message"> {{ error }}</div>
+      <div class="list auth-list register">
+        <label class="item item-input">
+          <span class="input-label">Email</span>
+          <input type="text" ng-model="user.email" required>
+        </label>
+
+        <label class="item item-input">
+          <span class="input-label">First Name</span>
+          <input type="text" ng-model="user.firstName" required>
+        </label>
+
+        <label class="item item-input">
+          <span class="input-label">Last Name</span>
+          <input type="text" ng-model="user.lastName" required>
+        </label>
+
+        <label class="item item-input">
+          <span class="input-label">Username</span>
+          <input type="text" ng-model="user.username" required>
+        </label>
+       
+
+        <label class="item item-input">
+          <span class="input-label">Password</span>
+          <input type="password" ng-model="user.password" required ng-minlength="6">
+        </label>
+     
+        <button class="button button-block button-complete" ng-disabled="editForm.$invalid" type="submit">
+          Edit
+        </button>
+   </div>
+  </form>
+  
+</ion-content>
+</ion-view>

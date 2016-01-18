@@ -114,6 +114,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         controller: 'AccountController'
       }
     }
+  })
+
+    .state('tab.edit', {
+    url: '/account/edit',
+    views: {
+      'tab-account': {
+        templateUrl: 'templates/edit.html',
+        controller: 'EditController'
+      }
+    }
   });
 
   // if none of the above states are matched, use this as the fallback
