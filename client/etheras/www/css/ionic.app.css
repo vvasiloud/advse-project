@@ -38,8 +38,9 @@ in ionic's _variables.scss file.
   .reservations .item-title {
     background: rgba(63, 155, 199, 0.68);
     text-align: center; }
-  .reservations .item-title h2 {
-    font-size: 19px; }
+    .reservations .item-title h2 {
+      color: #013746;
+      font-size: 20px; }
   .reservations .item-body {
     background: rgba(223, 228, 230, 0.89); }
 
@@ -50,11 +51,17 @@ in ionic's _variables.scss file.
 
 .search-list input[type="text"], .search-list input[type="number"] {
   color: #D0DDE0;
-  font-size: 20px; }
+  font-size: 20px;
+  text-align: right; }
 
 .search-list .input-label {
   color: #D0DDE0;
   font-size: 20px; }
+
+.search-list .item-select select {
+  background-color: #417D9A;
+  font-size: 20px;
+  color: #D0DDE0; }
 
 .search-list button {
   background-color: #417D9A;
@@ -135,6 +142,20 @@ in ionic's _variables.scss file.
     margin-top: 34px; }
     .auth .register .button {
       margin-top: 40px; }
+
+.error-popup .popup-head {
+  background-color: #417D9A; }
+  .error-popup .popup-head h3 {
+    color: #D0DDE0; }
+
+.error-popup .popup-body {
+  background-color: #D0DDE0; }
+
+.error-popup .popup-buttons {
+  background-color: #D0DDE0; }
+  .error-popup .popup-buttons .button {
+    background-color: #417D9A;
+    color: #D0DDE0; }
 
 /*!
   Ionicons, v2.0.1

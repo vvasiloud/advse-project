@@ -60,10 +60,11 @@ in ionic's _variables.scss file.
 	.item-title {
 		background: rgba(63, 155, 199, 0.68);
 		text-align: center;
-	}
 
-	.item-title h2{
-		font-size: 19px;
+		h2{
+			color:  #013746;
+			font-size: 20px;
+		}
 	}
 
 	.item-body {
@@ -84,11 +85,18 @@ in ionic's _variables.scss file.
 	 input[type="text"], input[type="number"]{
 		color: $light;
 		font-size: 20px;
+		text-align: right;
 	}
 
 	.input-label{
 		color: $light;
 		font-size: 20px;
+	}
+
+	.item-select select {
+		background-color: $positive;
+		font-size: 20px;
+		color: $light;
 	}
 
 	button {
@@ -221,7 +229,25 @@ in ionic's _variables.scss file.
 }
 
 
+.error-popup{
+	.popup-head{
+		background-color: $positive;
+		h3 {
+			color: $light;
+		}
+	}
+	.popup-body{
+		background-color: $light;
+	}
 
+	.popup-buttons {
+		background-color: $light;
+		.button{
+			background-color: $positive;
+			color: $light
+		}
+	}
+}
 
 
 
