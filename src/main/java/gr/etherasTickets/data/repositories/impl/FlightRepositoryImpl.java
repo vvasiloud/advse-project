@@ -3,6 +3,8 @@ package gr.etherasTickets.data.repositories.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.namespace.QName;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -34,17 +36,20 @@ public class FlightRepositoryImpl implements CustomFlightRepository  {
 			query.addCriteria(Criteria.where("from").is(from));
 		
 		if(availableSeats>0)
-			query.addCriteria(Criteria.where("seat").is(availableSeats));
+			query.addCriteria(Criteria.where("availableSeats").gte(availableSeats));
 		
 		if(maxPrice > 0 && minPrice > 0)
 			if(minPrice > maxPrice)
 				throw new BadArguments("minPrice must be lower than maxPrice");
 			else if(minPrice == maxPrice)
 				query.addCriteria(Criteria.where("price").is(maxPrice));
+			else
+				query.addCriteria(Criteria.where("price").gte(minPrice).and("price").lte(maxPrice));
 		else if(maxPrice > 0)
 			query.addCriteria(Criteria.where("price").lte(maxPrice));
 		else if(minPrice > 0)
 			query.addCriteria(Criteria.where("price").gte(minPrice));
+		
 		
 		List<Flight> flightList = operations.find(query, Flight.class);
 		if(flightList.isEmpty())

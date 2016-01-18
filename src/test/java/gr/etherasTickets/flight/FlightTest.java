@@ -120,15 +120,13 @@ public class FlightTest {
 		.andExpect(jsonPath("$.id").value(firstFlight.getId()));
 	}
 
-	/*
+	
 	@Test
-	public void testGetFlightByIdSeats() throws Exception{
-		mockMvc.perform(get(String.format("/flights/%s/seats" , firstFlight.getId())))
-		.andExpect(status().isOk())
-		.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-		.andExpect(jsonPath("$").isArray());
+	public void testGetNotExistFlightsWithManyArgs() throws Exception{
+		mockMvc.perform(get(String.format("/flights?to=%s&from=%s&minPrice=%s" , "Thessaloniki" , "Athens" , "60")))
+		.andExpect(status().isNotFound());
 	}
-	*/
+	
 
 
 
