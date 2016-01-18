@@ -42,12 +42,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
  .state('auth', {
     url: '/auth',
     templateUrl: 'templates/auth.html',
-    controller: 'AuthController'
-    // onEnter:function($state, $localstorage){
-    //   if($localstorage.get('token')){
-    //     $state.go("tab.order");
-    //   }
-    // }
+    controller: 'AuthController',
+    onEnter:function($state, $localstorage){
+      if($localstorage.get('user')){
+        $state.go("tab.account");
+      }
+    }
   })
 
   .state('login', {
@@ -96,16 +96,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
   })
 
-  .state('tab.reserve', {
-    url: '/search/results/reserve/:id',
-    views: {
-      'tab-search': {
-        templateUrl: 'templates/reserve.html',
-        controller: 'ReserveController'
-      }
-    }
-  })
-
   .state('tab.account', {
     url: '/account',
     views: {
@@ -114,9 +104,19 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         controller: 'AccountController'
       }
     }
+  })
+
+    .state('tab.edit', {
+    url: '/account/edit',
+    views: {
+      'tab-account': {
+        templateUrl: 'templates/edit.html',
+        controller: 'EditController'
+      }
+    }
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/account');
+  $urlRouterProvider.otherwise('/auth');
 
 });
