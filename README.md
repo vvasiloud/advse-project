@@ -4,8 +4,8 @@
 Java JdK
 http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
 
-Spring Tools
-http://spring.io/tools/sts
+Maven ή IDE με maven oπως το Εclipse
+https://maven.apache.org/
 
 Mongo DataBase
 https://www.mongodb.org/downloads#production
@@ -25,11 +25,14 @@ mongod
 
 Κάνετε clone από το git στο Source Tree
 
-Import στο Spring Tools
+Import στο ΙDE
 File > Import... > Maven > Existing Maven Projects
 
 Στο source Tree κάντε ingore τα αρχεία και φακέλους με . μπροστά
 
+Εκτέλεση στο Εclipse
+Επιλέξτε το project > δεξί κλικ > Run as > Maven Build...
+Στο goals spring-boot:run
 
-Run in Spring Tools
-Επιλέξτε το project > δεξί κλικ > Run as > Spring Boot App
+Εκτέλεση σε Maven Command Line
+mvn spring-boot:run
