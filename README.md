@@ -44,7 +44,7 @@ File > Import... > Maven > Existing Maven Projects
 Εκτέλεση σε Maven Command Line
 mvn spring-boot:run
 
-Για εκτέλεση του client σε υπολογιστη 
+Για εκτέλεση του client σε υπολογιστη
 Μπορει να γιωει μεσω της εφαρμογή ARC Welder
 https://chrome.google.com/webstore/detail/arc-welder/emfinbmielocnlhgmfkkmkngdoccbadn
 
@@ -52,3 +52,9 @@ https://chrome.google.com/webstore/detail/arc-welder/emfinbmielocnlhgmfkkmkngdoc
 https://github.com/vvasiloud/advse-project/releases
 
 EtherasTicketsClient.rar
+
+Δοκιμαστικός Χρήστης
+username: test2
+password: password
+
+Όλα τα δεδομένα βρίσκονται στο φάκελο dummydata τα αρχειά flights.json και users.json
