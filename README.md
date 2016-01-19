@@ -44,14 +44,14 @@ File > Import... > Maven > Existing Maven Projects
 Εκτέλεση σε Maven Command Line
 mvn spring-boot:run
 
-Για εκτέλεση του client σε υπολογιστη
-Μπορει να γιωει μεσω της εφαρμογή ARC Welder
-https://chrome.google.com/webstore/detail/arc-welder/emfinbmielocnlhgmfkkmkngdoccbadn
 
-με εκτελεσιμο αρχείο
+Web service url: http://snf-694376.vm.okeanos.grnet.gr:8080/etherastickets/
+
+Για εκτέλεση του client υπάρχει το apk build για Android.
+
+Εκτελέσιμα αρχεία:
 https://github.com/vvasiloud/advse-project/releases
 
-EtherasTicketsClient.rar
 
 Δοκιμαστικός Χρήστης
 username: test2
