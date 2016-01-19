@@ -1,5 +1,12 @@
 # EtherasTickets
 
+# Sprint 1: 2 / 1 / 2016 - 9 / 1 / 2016
+
+# Sprint 2: 10 / 1 / 2016 - 16 / 1 / 2016
+
+# Sprint 3:  17 / 1 / 2016 - 19 / 1 / 2016
+
+Οδηγιες Εγκαταστασης
 Θα χρειάζεται
 Java JdK
 http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
